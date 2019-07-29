@@ -78,6 +78,23 @@ switch ($valor)
 		header("Location: ../views/frmGerenciamento.php#usuario");
 		break;
 	}
+	case 2://Pesquisando usuário
+	{
+		
+		$_SESSION['session_pesquisaUsuario'] = utf8_decode($_POST['Ds_Pesquisa']);	
+    	$_SESSION['session_listarUsuarios'] = 'pesquisa';
+		
+		header("Location: ../views/frmGerenciamento.php#usuario");
+		
+		break;
+	}
+	case 3: //Inativando usuário
+    {		
+		$inativar = new DaoUsuario();
+		$inativar->inativarUsuario($_POST['ID_Usuario']);
+		header("Location: ../views/frmGerenciamento.php#usuario");
+		break;
+	}
 }
 	function pegaValores()
 	{

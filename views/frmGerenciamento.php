@@ -1,4 +1,5 @@
-<?php    
+<?php
+	ini_set('default_charset','UTF-8'); 
     session_start();
 ?>
 <HTML>
@@ -24,14 +25,14 @@
                             <span class=""></span>
                             <span class=""></span>
                             </button>
-                            <a class="navbar-brand" href="../frmTelaPrincipal.php">Departamento Meio Ambiente</a>
+                            <a class="navbar-brand" href="frmTelaPrincipal.php">Departamento Meio Ambiente</a>
                         </div>
                         <div class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Usuário</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../frmTelaPrincipal.php">TELA PRINCIPAL</a></li>
+                                        <li><a href="frmTelaPrincipal.php">TELA PRINCIPAL</a></li>
                                         <li><a href="">SAIR</a></li>
                                     </ul>
                                 </li>
@@ -40,7 +41,7 @@
                     </div>
                     <!-- Nav tabs -->
                     <div class="col-md-12">  
-                        <ul class="nav nav-tabs" role="tablist" id="tabs_navegacao_estoque">
+                        <ul class="nav nav-tabs" role="tablist" id="tabs_navegacao_gerenciamento">
                             <li role="presentation"><a href="#inicio" aria-controls="home" class="btn btn-light" role="tab" data-toggle="tab">Início</a></li>
                             <li role="presentation"><a href="#usuario" class="btn btn-light" role="tab" data-toggle="tab">Usuário</a></li>
                             <li role="presentation"><a href="#notificacao" class="btn btn-light" role="tab" data-toggle="tab">Notificação</a></li>
@@ -52,10 +53,10 @@
                                 <p>O processo é lento mas vai valer a pena!</p>
                             </div>
                             <div class="tab-pane" id="usuario" class="tab-pane fade">
-                                <?php include 'abas/frmAbaUsuario.php'?>
+                                <?php include_once 'frmAbaUsuario.php'?>
                             </div>
                             <div class="tab-pane" id="notificacao" class="tab-pane fade">
-                                <?php include 'abas/frmAbaNotificacao.php'?>
+                                <?php include_once 'frmAbaNotificacao.php'?>
                             </div>
                         </div>
                     </div>

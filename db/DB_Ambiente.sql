@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS TB_Noticia;
 CREATE TABLE TB_Usuario (
 ID_Usuario int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 Nm_Usuario varchar(60) NOT NULL,
-Ds_Senha varchar(30) NOT NULL,
+Ds_Senha varchar(50) NOT NULL,
 Tp_Usuario varchar(15) NOT NULL,
 Ft_Usuario varchar(200) NOT NULL,
 Nr_Cpf char(14) NOT NULL,

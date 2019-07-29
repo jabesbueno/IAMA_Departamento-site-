@@ -1,7 +1,6 @@
 <?php
-
-ini_set('default_charset','UTF-8'); 
-
+	ini_set('default_charset','UTF-8'); 
+    session_start();
 ?>
 <HTML>
     <HEAD>
@@ -15,12 +14,12 @@ ini_set('default_charset','UTF-8');
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">Departamento Meio Ambiente</a>
+					<a class="navbar-brand" href="#">Meio Ambiente</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<!--<li><a class="nav-link" href="prontuario/frmGerenciamentoProntuario.php#inicio">Guarda</a></li>-->
-					<!--<li><a class="nav-link" href="estoque/frmGerenciamentoProduto.php#inicio">Estoque</a></li>-->
+					<li class="active"><a href="frmGerenciamento.php">Gerenciamento</a></li>
+					<!--<li><a class="nav-link" href=""></a></li>-->
+					<!--<li><a class="nav-link" href=""></a></li>-->
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>

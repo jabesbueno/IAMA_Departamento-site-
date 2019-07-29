@@ -39,14 +39,41 @@ class DaoUsuario{
 	
 	public function buscaUsuario() {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_gcm");
+			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
 			$select = $conec->prepare("SELECT ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario FROM TB_Usuario");
 			$select->execute();
 		}catch(Exception $e){
 			print "Erro:..".$e;
 		} 	
-			return $select;
+		return $select;
     }
+	
+	public function buscaUsuarioESP($nome_usuario) {
+	  try{
+			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$select = $conec->prepare("SELECT ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario FROM TB_Usuario WHERE Nm_Usuario LIKE '%" . $nome_usuario . "%'");
+			$select->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		} 	
+		return $select;
+    }
+	
+	public function inativarUsuario($id_usuario)
+	{
+		try
+		{
+			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$update = $conec->prepare("UPDATE TB_Usuario SET St_Usuario = :St_Usuario WHERE ID_Usuario = :ID_Usuario");
+			$update->bindValue(":St_Usuario", 'INATIVO');
+			$update->bindValue(":ID_Usuario", $id_usuario);
+			$update->execute();
+		}
+		catch(Exception $e)
+		{
+			print "Não chegou";
+		} 
+	}
 	
 	
 }

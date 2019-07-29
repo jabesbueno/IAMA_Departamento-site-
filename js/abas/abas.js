@@ -22,6 +22,18 @@ $(document).ready(function()
 		$('#formUsuario input[name="acao"]').val('adicionar');
 	});
 	
+	$('.btn_inativar_usuario').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#inativarUsuario input[name="ID_Usuario"').val(dados.ID_Usuario);
+		$('#inativarUsuario input[name="Nm_Usuario"]').val(dados.Nm_Usuario);
+		$('#inativarUsuario input[name="Nr_Cpf"]').val(dados.Nr_Cpf);
+		$('#inativarUsuario input[name="Dt_Nascimento"]').val(dados.Dt_Nascimento);
+		
+		$('#modalInativarUsuario').modal();
+	});
+	
 	// Barrar acesso a tab caso a mesma esteja disabled
 	$('a[data-toggle="tab"]').on('click', function() {				
 		if ($(this).parent('li').hasClass('disabled')) {
@@ -38,5 +50,5 @@ $(document).ready(function()
 
 	// Restaurar aba aberta após recarregar a página
 	var hash = window.location.hash;
-	$('#tabs_navegacao_prontuario a[href="' + hash + '"]').tab('show');
+	$('#tabs_navegacao_gerenciamento a[href="' + hash + '"]').tab('show');
 });

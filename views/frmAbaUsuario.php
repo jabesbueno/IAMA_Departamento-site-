@@ -11,8 +11,12 @@
 	if(!isset($_SESSION['sessionUsuario_Cpf'])) $_SESSION['sessionUsuario_Cpf'] = '';
 	if(!isset($_SESSION['sessionUsuario_Nascimento'])) $_SESSION['sessionUsuario_Nascimento'] = '';
 	if(!isset($_SESSION['sessionUsuario_Validacao'])) $_SESSION['sessionUsuario_Validacao'] = '';
-	
-	
+
+	if(!isset($_SESSION['session_pesquisaUsuario'])) $_SESSION['session_pesquisaUsuario'] = '';
+    if(!isset($_SESSION['session_listarUsuarios'])) $_SESSION['session_listaUsuarios'] = 'normal';
+    
+    $select2 = $busca->buscaUsuarioESP($_SESSION['session_pesquisaUsuario']);
+	header('Content-type: text/html; charset=UTF-8');
 ?>
 <HTML>
     <HEAD>
@@ -22,9 +26,17 @@
     <BODY>
         <br>
         <div class="row">
-            <form name="formPesquisaUsuario" id="formPesquisaUsuario"method="post" action="../controllers/controllerUsuario.php">
-                <div class="col-md-2">
+			<div class="col-md-2">
                     <button type="button" class="btn btn-primary btn_adicionar_usuario" href="#" data-toggle="modal" data-target="#modalUsuario">Adicionar Usuário</button>
+             </div>
+            <form name="formPesquisaUsuario" id="formPesquisaUsuario"method="post" action="../controllers/controllerUsuario.php">
+                <div class="col-sm-8">
+                    <span class="pull-right">
+                    <input type="text" class="form-control frm-pesquisa" id="Ds_Pesquisa" name="Ds_Pesquisa" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaUsuario'] ?>" placeholder="USUARIO">
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary btn-pesquisar-usuario" name="botao" value="2">Pesquisar</button>
                 </div>
             </form>
         </div>
@@ -98,11 +110,47 @@
 			</div>
 		</div>
 		<!-- Fim do Modal-->
+		<!-- MODAL DE INATIVAÇÃO DE USUARIO -->
+        <div id="modalInativarUsuario" class="modal fade" tabindex="-1" role="dialog" ref="inativarUsuario">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Tem certeza que deseja inativar este usuário?</h3>
+                    </div>
+					<form name="inativarUsuario" id="inativarUsuario" method="post" action="../controllers/controllerUsuario.php">
+						<div class="modal-body">
+							<input type="hidden" class="form-control" id="ID_Usuario" name="ID_Usuario">
+							<div class="row">
+									<div class="col-md-4">
+										<label>Nome</label>
+										<input type="text" class="form-control" id="Nm_Usuario" name="Nm_Usuario" disabled>
+									</div>
+									<div class="col-md-4">
+										<label>CPF</label>
+										<input type="text" class="form-control" id="Nr_Cpf" name="Nr_Cpf" disabled>
+									</div>
+									<div class="col-md-4">
+										<label>Nascimento</label>
+										<input type="date" class="form-control" id="Dt_Nascimento" name="Dt_Nascimento" disabled>
+									</div>
+							</div>
+							<br>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" name="botao" class="btn btn-danger" value="3">Inativar</button>
+							<button type="button" class="btn btn-primary" name="botao" data-dismiss="modal">Fechar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Fim do Modal-->
         <br>
         <table class="table table-hover">
             <thead thead-default>
                 <tr>
                     <th>#</th>
+					<th>Usuário</th>
                     <th>Tipo</th>
                     <th>CPF</th>
 					<th>Nascimento</th>
@@ -112,18 +160,40 @@
             </thead>
             <tbody>
                 <?php
-				while($usuario = $select->fetch()) 
+				if($_SESSION['session_listarUsuarios'] == 'pesquisa') 
+                {
+					while($usuario = $select2->fetch()) 
                        {?>
 							<tr>
 								<td><?php echo $usuario["ID_Usuario"] ?></td>
+								<td><?php echo $usuario["Nm_Usuario"] ?></td>
 								<td><?php echo utf8_encode($usuario["Tp_Usuario"]) ?></td>
 								<td><?php echo $usuario["Nr_Cpf"] ?></td>
-								<td><?php echo $usuario["Dt_Nascimento"] ?></td>
+								<td><?php echo date("d/m/Y", strtotime($usuario["Dt_Nascimento"])) ?></td>
 								<td><?php echo $usuario["St_Usuario"] ?></td>
-								<td><a href="#usuario" data='<?php echo json_encode(array_map("utf8_encode",$usuario)) ?>' id="excluir_usuario_<?php echo $usuario["ID_Usuario"]?>" class="btn btn-danger btn_excluir_usuario">Excluir</a></td>
+								<td><a href="#usuario" data='<?php echo json_encode(array_map("utf8_encode",$usuario)) ?>' id="excluir_usuario_<?php echo $usuario["ID_Usuario"]?>" class="btn btn-danger btn_excluir_usuario">Inativar</a></td>
 							</tr>
 						<?php
-						}?>
+						}
+				$_SESSION['session_listarUsuarios'] = 'normal';
+                $_SESSION['session_pesquisaUsuario'] = '';
+                }
+                else
+                { 
+                    while($usuario= $select->fetch())
+                    {?>
+							<tr>
+								<td><?php echo $usuario["ID_Usuario"] ?></td>
+								<td><?php echo $usuario["Nm_Usuario"] ?></td>
+								<td><?php echo utf8_encode($usuario["Tp_Usuario"]) ?></td>
+								<td><?php echo $usuario["Nr_Cpf"] ?></td>
+								<td><?php echo date("d/m/Y", strtotime($usuario["Dt_Nascimento"])) ?></td>
+								<td><?php echo $usuario["St_Usuario"] ?></td>
+								<td><a href="#usuario" data='<?php echo json_encode(array_map("utf8_encode",$usuario)) ?>' id="inativar_usuario_<?php echo $usuario["ID_Usuario"]?>" class="btn btn-danger btn_inativar_usuario">Inativar</a></td>
+							</tr>
+						<?php 
+                    }
+                } ?>
             </tbody>
         </table>
 		<!-- SCRIPT PARA EXIBIÇÃO DE ERROS DE VALIDAÇÃO/FORMATAÇÃO DE CAMPOS NO MODAL -->
