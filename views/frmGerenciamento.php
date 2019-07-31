@@ -45,6 +45,8 @@
                             <li role="presentation"><a href="#inicio" aria-controls="home" class="btn btn-light" role="tab" data-toggle="tab">Início</a></li>
                             <li role="presentation"><a href="#usuario" class="btn btn-light" role="tab" data-toggle="tab">Usuário</a></li>
                             <li role="presentation"><a href="#notificacao" class="btn btn-light" role="tab" data-toggle="tab">Notificação</a></li>
+							<li role="presentation"><a href="#eventos" class="btn btn-light" role="tab" data-toggle="tab">Eventos</a></li>
+							<li role="presentation"><a href="#noticias" class="btn btn-light" role="tab" data-toggle="tab">Notícias</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -57,6 +59,12 @@
                             </div>
                             <div class="tab-pane" id="notificacao" class="tab-pane fade">
                                 <?php include_once 'frmAbaNotificacao.php'?>
+                            </div>
+							<div class="tab-pane" id="eventos" class="tab-pane fade">
+                                
+                            </div>
+							<div class="tab-pane" id="noticias" class="tab-pane fade">
+                                
                             </div>
                         </div>
                     </div>
