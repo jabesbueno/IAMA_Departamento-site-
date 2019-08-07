@@ -13,10 +13,9 @@
 	if(!isset($_SESSION['sessionUsuario_Validacao'])) $_SESSION['sessionUsuario_Validacao'] = '';
 
 	if(!isset($_SESSION['session_pesquisaUsuario'])) $_SESSION['session_pesquisaUsuario'] = '';
-    if(!isset($_SESSION['session_listarUsuarios'])) $_SESSION['session_listaUsuarios'] = 'normal';
+    if(!isset($_SESSION['session_listarUsuarios'])) $_SESSION['session_listarUsuarios'] = 'normal';
     
     $select2 = $busca->buscaUsuarioESP($_SESSION['session_pesquisaUsuario']);
-	header('Content-type: text/html; charset=UTF-8');
 ?>
 <HTML>
     <HEAD>
@@ -83,7 +82,7 @@
 							<div class="row">
                                 <div class="col-md-12">
                                     <label for="Ft_Usuario">Foto</label>
-									<img src="" alt="#" class="img-rounded" id="Ft_Usuario" name="Ft_Usuario">
+									<img src="../assets/img/perfil.jpg" alt="#" class="img-rounded" id="Ft_Usuario" name="Ft_Usuario">
 									<input type="file" id="Ft_Usuario" class="form-control" name="Ft_Usuario"/>
                                 </div>
                             </div>

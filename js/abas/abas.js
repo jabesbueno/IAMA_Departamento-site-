@@ -16,12 +16,37 @@ $(document).ready(function()
         $(".alert").alert('close');
     });
 	
-	// Adicionar novo exame para o Guarda
+	// Adicionar novo usuário
 	$('.btn_adicionar_usuario').click(function()
 	{
 		$('#formUsuario input[name="acao"]').val('adicionar');
 	});
 	
+	// Adicionar novo evento
+	$('.btn_adicionar_evento').click(function()
+	{
+		$('#formEvento input[name="acao"]').val('adicionar');
+	});
+	
+	//Editando evento
+	$('.btn_editar_evento').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#formEvento input[name="ID_Evento"').val(dados.ID_Evento);
+		$('#formEvento input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formEvento input[name="Nm_Evento"').val(dados.Nm_Evento);
+		$('#formEvento input[name="Dt_Evento"]').val(dados.Dt_Evento);
+		$('#formEvento input[name="Hr_Evento"]').val(dados.Hr_Evento);
+		$('#formEvento input[name="Nm_Local"]').val(dados.Nm_Local);
+		$('#formEvento textarea[name="Ds_Evento"]').val(dados.Ds_Evento);
+		
+		$('#formUsuario input[name="acao"]').val('editar');
+		
+		$('#modalEvento').modal();
+	});
+	
+	//Inativando um usuário
 	$('.btn_inativar_usuario').click(function()
 	{
         var dados = $.parseJSON($(this).attr('data'));
