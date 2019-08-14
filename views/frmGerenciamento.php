@@ -64,7 +64,7 @@
                                 <?php include_once 'frmAbaEvento.php'?>
                             </div>
 							<div class="tab-pane" id="noticias" class="tab-pane fade">
-                                
+                                <?php include_once 'frmAbaNoticia.php'?>
                             </div>
                         </div>
                     </div>

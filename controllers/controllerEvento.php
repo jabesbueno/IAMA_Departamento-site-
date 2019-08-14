@@ -86,6 +86,14 @@ $valor = $_POST['botao'];
 			
 			break;
 		}
+		case 3://Excluir evento
+		{
+			$ID_Evento = $_POST['ID_Evento'];
+			$delete = new DaoEvento();
+			$delete->excluirEvento($ID_Evento);
+			header("Location: ../views/frmGerenciamento.php#eventos");
+			break;
+		}
 	}
 
 	function pegaValores()

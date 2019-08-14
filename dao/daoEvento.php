@@ -61,5 +61,16 @@ class DaoEvento{
 			print "Erro:..".$e;
 		} 	
     }
+	
+	public function excluirEvento($ID_Evento) {
+	  try{
+			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$delete = $conec->prepare("DELETE FROM TB_Evento WHERE ID_Evento = :ID_Evento");
+			$delete->bindValue(":ID_Evento", $ID_Evento);
+			$delete->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		} 	
+    }
 }
 ?>

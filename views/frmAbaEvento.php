@@ -92,6 +92,45 @@
 			</div>
 		</div>
 		<!-- Fim do Modal-->
+		<!-- MODAL DE EXCLUIR DE EVENTO -->
+        <div id="modalExcluirEvento" class="modal fade" tabindex="-1" role="dialog" ref="modalExcluirEvento">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Tem certeza que deseja excluir este evento?</h3>
+                    </div>
+					<form name="formExcluirEvento" id="formExcluirEvento" method="post" action="../controllers/controllerEvento.php">
+						<div class="modal-body">
+							<input type="hidden" name="ID_Evento" value="" />
+							<input type="hidden" name="ID_Usuario" value="" />
+							<input type="hidden" name="acao" value="" />
+							<div class="row">
+								<div class="col-md-12">
+									<label for="Nm_Evento">Nome</label>
+									<input type="text" class="form-control" id="Nm_Evento" name="Nm_Evento" disabled>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label for="Dt_Evento">Data</label>
+									<input type="date" class="form-control" id="Dt_Evento" name="Dt_Evento" disabled>
+								</div>
+								<div class="col-md-6">
+									<label for="Hr_Evento">Hora</label>
+									<input type="text" class="form-control hora" id="Hr_Evento" name="Hr_Evento" disabled>
+								</div>
+							</div>
+							<br>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" name="botao" class="btn btn-danger" value="3">Excluir</button>
+							<button type="button" class="btn btn-primary" name="botao" data-dismiss="modal">Fechar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Fim do Modal-->
 		<br>
         <table class="table table-hover">
             <thead thead-default>
@@ -117,7 +156,7 @@
 								<td><?php echo $evento["Hr_Evento"] ?></td>
 								<td><?php echo utf8_encode($evento["St_Evento"]) ?></td>
 								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="editar_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-primary btn_editar_evento">Editar</a></td>
-								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="excluir_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-danger btn_excluir_evento">Inativar/Ativar</a></td>
+								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="excluir_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-danger btn_excluir_evento">Excluir</a></td>
 							</tr>
 						<?php
 						}
@@ -135,7 +174,7 @@
 								<td><?php echo $evento["Hr_Evento"] ?></td>
 								<td><?php echo utf8_encode($evento["St_Evento"]) ?></td>
 								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="editar_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-primary btn_editar_evento">Editar</a></td>
-								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="excluir_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-danger btn_excluir_evento">Inativar/Ativar</a></td>
+								<td><a href="#eventos" data='<?php echo json_encode(array_map("utf8_encode",$evento)) ?>' id="excluir_evento_<?php echo $evento["ID_Evento"]?>" class="btn btn-danger btn_excluir_evento">Excluir</a></td>
 							</tr>
 						<?php 
                     }

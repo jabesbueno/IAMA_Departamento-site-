@@ -28,6 +28,12 @@ $(document).ready(function()
 		$('#formEvento input[name="acao"]').val('adicionar');
 	});
 	
+	// Adicionar nova noticia
+	$('.btn_adicionar_noticia').click(function()
+	{
+		$('#formNoticia input[name="acao"]').val('adicionar');
+	});
+	
 	//Editando evento
 	$('.btn_editar_evento').click(function()
 	{
@@ -41,9 +47,26 @@ $(document).ready(function()
 		$('#formEvento input[name="Nm_Local"]').val(dados.Nm_Local);
 		$('#formEvento textarea[name="Ds_Evento"]').val(dados.Ds_Evento);
 		
-		$('#formUsuario input[name="acao"]').val('editar');
+		$('#formEvento input[name="acao"]').val('editar');
 		
 		$('#modalEvento').modal();
+	});
+	
+	//Editando noticia
+	$('.btn_editar_noticia').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#formNoticia input[name="ID_Noticia"').val(dados.ID_Noticia);
+		$('#formNoticia input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formNoticia input[name="Nm_Noticia"').val(dados.Nm_Noticia);
+		$('#formNoticia input[name="Dt_Noticia"]').val(dados.Dt_Noticia);
+		$('#formNoticia input[name="Hr_Noticia"]').val(dados.Hr_Noticia);
+		$('#formNoticia textarea[name="Ds_Noticia"]').val(dados.Ds_Noticia);
+		
+		$('#formNoticia input[name="acao"]').val('editar');
+		
+		$('#modalNoticia').modal();
 	});
 	
 	//Inativando um usuário
@@ -57,6 +80,38 @@ $(document).ready(function()
 		$('#inativarUsuario input[name="Dt_Nascimento"]').val(dados.Dt_Nascimento);
 		
 		$('#modalInativarUsuario').modal();
+	});
+	
+	//Excluir evento
+	$('.btn_excluir_evento').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#formExcluirEvento input[name="ID_Evento"').val(dados.ID_Evento);
+		$('#formExcluirEvento input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formExcluirEvento input[name="Nm_Evento"').val(dados.Nm_Evento);
+		$('#formExcluirEvento input[name="Dt_Evento"]').val(dados.Dt_Evento);
+		$('#formExcluirEvento input[name="Hr_Evento"]').val(dados.Hr_Evento);
+		
+		$('#formExcluirEvento input[name="acao"]').val('editar');
+		
+		$('#modalExcluirEvento').modal();
+	});
+	
+	//Excluir noticia
+	$('.btn_excluir_noticia').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#formExcluirNoticia input[name="ID_Noticia"').val(dados.ID_Noticia);
+		$('#formExcluirNoticia input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formExcluirNoticia input[name="Nm_Noticia"').val(dados.Nm_Noticia);
+		$('#formExcluirNoticia input[name="Dt_Noticia"]').val(dados.Dt_Noticia);
+		$('#formExcluirNoticia input[name="Hr_Noticia"]').val(dados.Hr_Noticia);
+		
+		$('#formNoticia input[name="acao"]').val('editar');
+		
+		$('#modalExcluirNoticia').modal();
 	});
 	
 	// Barrar acesso a tab caso a mesma esteja disabled

@@ -57,5 +57,16 @@ class DaoNoticia{
 			print "Erro:..".$e;
 		} 	
     }
+	
+	public function excluirNoticia($ID_Noticia) {
+	  try{
+			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$delete = $conec->prepare("DELETE FROM TB_Noticia WHERE ID_Noticia = :ID_Noticia");
+			$delete->bindValue(":ID_Noticia", $ID_Noticia);
+			$delete->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		} 	
+    }
 }
 ?>
