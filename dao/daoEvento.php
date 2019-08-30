@@ -5,7 +5,7 @@ class DaoEvento{
 	
 	public function inserirEvento(classeEvento $evento) {
 		try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$insert = $conec->prepare("INSERT INTO TB_Evento(Nm_Evento, Dt_Evento, Hr_Evento, Nm_Local, Ds_Evento, St_Evento, ID_Usuario)"
 			." VALUES(:Nm_Evento, :Dt_Evento, :Hr_Evento, :Nm_Local, :Ds_Evento, :St_Evento, :ID_Usuario)");
 			$insert->bindValue(":Nm_Evento", utf8_decode($evento->get_Nm_Evento()));
@@ -23,7 +23,7 @@ class DaoEvento{
 	
 	public function buscaEvento() {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$select = $conec->prepare("SELECT ID_Evento, ID_Usuario, Nm_Evento, Dt_Evento, Hr_Evento, Nm_Local, Ds_Evento, St_Evento FROM TB_Evento");
 			$select->execute();
 		}catch(Exception $e){
@@ -34,7 +34,7 @@ class DaoEvento{
 	
 	public function buscaEventoESP($nome_usuario) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$select = $conec->prepare("SELECT ID_Evento, ID_Usuario, Nm_Evento, Dt_Evento, Hr_Evento, Nm_Local, Ds_Evento, St_Evento FROM TB_Evento WHERE Nm_Evento LIKE '%" . $nome_usuario . "%'");
 			$select->execute();
 		}catch(Exception $e){
@@ -45,7 +45,7 @@ class DaoEvento{
 	
 	public function atualizarEvento(classeEvento $evento) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$update = $conec->prepare("UPDATE TB_Evento SET Nm_Evento = :Nm_Evento, Dt_Evento = :Dt_Evento, "
 			."Hr_Evento = :Hr_Evento, Nm_Local = :Nm_Local, Ds_Evento = :Ds_Evento, St_Evento = :St_Evento, ID_Usuario = :ID_Usuario WHERE ID_Evento = :ID_Evento");
 			$update->bindValue(":Nm_Evento", utf8_decode($evento->get_Nm_Evento()));
@@ -64,7 +64,7 @@ class DaoEvento{
 	
 	public function excluirEvento($ID_Evento) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$delete = $conec->prepare("DELETE FROM TB_Evento WHERE ID_Evento = :ID_Evento");
 			$delete->bindValue(":ID_Evento", $ID_Evento);
 			$delete->execute();

@@ -5,7 +5,7 @@ class DaoNoticia{
 	
 	public function inserirNoticia(classeNoticia $noticia) {
 		try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$insert = $conec->prepare("INSERT INTO TB_Noticia(ID_Usuario, Nm_Noticia, Ds_Noticia, Dt_Noticia, Hr_Noticia)"
 			." VALUES(:ID_Usuario, :Nm_Noticia, :Ds_Noticia, :Dt_Noticia, :Hr_Noticia)");
 			$insert->bindValue(":ID_Usuario", $noticia->get_ID_Usuario());
@@ -21,7 +21,7 @@ class DaoNoticia{
 	
 	public function buscaNoticia() {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$select = $conec->prepare("SELECT ID_Noticia, ID_Usuario, Nm_Noticia, Ds_Noticia, Dt_Noticia, Hr_Noticia FROM TB_Noticia");
 			$select->execute();
 		}catch(Exception $e){
@@ -32,7 +32,7 @@ class DaoNoticia{
 	
 	public function buscaNoticiaESP($nome_noticia) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$select = $conec->prepare("SELECT ID_Noticia, ID_Usuario, Nm_Noticia, Ds_Noticia, Dt_Noticia, Hr_Noticia FROM TB_Noticia WHERE Nm_Noticia LIKE '%" . $nome_noticia . "%'");
 			$select->execute();
 		}catch(Exception $e){
@@ -43,7 +43,7 @@ class DaoNoticia{
 	
 	public function atualizarNoticia(classeNoticia $noticia) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$update = $conec->prepare("UPDATE TB_Noticia SET ID_Usuario = :ID_Usuario, Nm_Noticia = :Nm_Noticia, "
 			."Ds_Noticia = :Ds_Noticia, Dt_Noticia = :Dt_Noticia, Hr_Noticia = :Hr_Noticia WHERE ID_Noticia = :ID_Noticia");
 			$update->bindValue(":ID_Usuario", $noticia->get_ID_Usuario());
@@ -60,7 +60,7 @@ class DaoNoticia{
 	
 	public function excluirNoticia($ID_Noticia) {
 	  try{
-			$conec = conec::conecta_mysql("localhost","root","","db_ambiente");
+			$conec = conec::conecta_mysql();
 			$delete = $conec->prepare("DELETE FROM TB_Noticia WHERE ID_Noticia = :ID_Noticia");
 			$delete->bindValue(":ID_Noticia", $ID_Noticia);
 			$delete->execute();

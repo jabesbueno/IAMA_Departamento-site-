@@ -34,6 +34,12 @@ $(document).ready(function()
 		$('#formNoticia input[name="acao"]').val('adicionar');
 	});
 	
+	// Adicionar nova notificacao
+	$('.btn_adicionar_notificacao').click(function()
+	{
+		$('#formNotificacao input[name="acao"]').val('adicionar');
+	});
+	
 	//Editando evento
 	$('.btn_editar_evento').click(function()
 	{

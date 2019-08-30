@@ -107,3 +107,4 @@ $valor = $_POST['botao'];
 		
 		return $noticia;
 	}
+?>
