@@ -73,3 +73,5 @@ ALTER TABLE TB_Noticia
 ADD CONSTRAINT FK_Noticia_Usuario
 FOREIGN KEY(ID_Usuario) REFERENCES TB_Usuario (ID_Usuario);
 
+INSERT INTO TB_Usuario(ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario)
+VALUES(1,'jabes bueno',sha1('12345678'),'ADMINISTRADOR','../resources/img//1foto','111.111.111-11','1999-03-11','ATIVO');

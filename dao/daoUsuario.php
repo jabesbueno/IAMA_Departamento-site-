@@ -74,6 +74,22 @@ class DaoUsuario{
 			print "Não chegou";
 		} 
 	}
+
+	public function validaUsuario($Nm_Usuario, $Ds_Senha)
+	{
+	      $count=0;
+	    try{
+	      $conec = conec::conecta_mysql();
+          $result = $conec->prepare("SELECT * FROM TB_Usuario WHERE Nm_Usuario = :Nm_Usuario and Ds_Senha = sha1(:Ds_Senha)");
+		  $result->bindValue(":Nm_Usuario",$Nm_Usuario);
+		  $result->bindValue(":Ds_Senha",$Ds_Senha);
+		  $result->execute();
+		  $count =  $result->rowCount();
+		}catch(Exception $e){
+		  echo "Erro ".$e;
+		}  
+		return $count;
+	}
 	
 	
 }

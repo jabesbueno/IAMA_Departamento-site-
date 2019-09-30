@@ -1,5 +1,7 @@
 <?php
 	include_once "../dao/daoNotificacao.php";
+	require_once "../helpers/checarLogin.php"; 
+	if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#notificacao");
 	
 	$busca = new DaoNotificacao();
 	$select = $busca->buscaNotificacao();

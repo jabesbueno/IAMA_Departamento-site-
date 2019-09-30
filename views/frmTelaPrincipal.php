@@ -1,6 +1,6 @@
 <?php
 	ini_set('default_charset','UTF-8'); 
-    session_start();
+	require_once "../helpers/checarLogin.php";
 ?>
 <HTML>
     <HEAD>
@@ -23,10 +23,10 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Usuário</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo utf8_encode($_SESSION['session_Logado'])?></a>
 						<ul class="dropdown-menu" style="background-color:lightgray;">
 							<li><a href="">Meus Dados</a></li>
-                            <li><a href="">Sair</a></li>
+                            <li><a href="frmTelaLogin.php">Sair</a></li>
                         </ul>
 					</li>
 				</ul>

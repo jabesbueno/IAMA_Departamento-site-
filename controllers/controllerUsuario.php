@@ -95,6 +95,50 @@ switch ($valor)
 		header("Location: ../views/frmGerenciamento.php#usuario");
 		break;
 	}
+	case 4: //Validando Login
+	{
+		$validate = new Data_validator();
+			
+		$validate->define_pattern('erro_', '');
+ 
+		$validate->set('validarUsuario', $_POST['Nm_Usuario'])->is_required()
+				 ->set('validarSenha', $_POST['Ds_Senha'])->is_required();
+		
+		if($validate->validate())
+		{
+			
+				// Pegando os dados inseridos pelo usuario
+				$Nm_Usuario = $_POST['Nm_Usuario'];
+				$Ds_Senha = $_POST['Ds_Senha'];
+				// Instancia do DaoUsuario
+				$select = new DaoUsuario();
+				// Chamando função para inserir no banco de dados
+
+				$valida = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
+				
+				
+				$_SESSION['session_validarUsuario'] = null;
+				$_SESSION['session_validarSenha'] = null;
+				$_SESSION['session_validaLogin'] = null;
+				if($valida == 0)
+				{
+					$_SESSION['session_validarUsuario'] = null;
+					$_SESSION['session_validarSenha'] = null;
+					$_SESSION['session_validaLogin'] = 'Usuario ou Senha incorreto(s)';
+					header("Location: ../views/frmTelaLogin.php");
+				}
+				else
+				{
+					$_SESSION['session_validaLogin'] = null;
+					$_SESSION['session_validarUsuario'] = null;
+					$_SESSION['session_validarSenha'] = null;
+					$_SESSION['session_Logado'] = $Nm_Usuario;
+					$_SESSION['session_ultimaAtividade'] = time();
+					header("Location: ../views/frmTelaPrincipal.php");
+				}
+			}
+		break;
+	}
 }
 	function pegaValores()
 	{

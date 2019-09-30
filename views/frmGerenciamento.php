@@ -1,5 +1,6 @@
 <?php
-	ini_set('default_charset','UTF-8'); 
+	ini_set('default_charset','UTF-8');
+	require_once "../helpers/checarLogin.php"; 
     session_start();
 ?>
 <HTML>
@@ -14,7 +15,7 @@
 		<script type="text/javascript" src="../js/javascripts-abas.php"></script>
     </HEAD>
     <BODY>
-        <div id="headerwrap" style="background-color: #FEFEFE;">
+        <div id="headerwrap">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -30,10 +31,10 @@
                         <div class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Usuário</a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo utf8_encode($_SESSION['session_Logado'])?></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="frmTelaPrincipal.php">TELA PRINCIPAL</a></li>
-                                        <li><a href="">SAIR</a></li>
+                                        <li><a href="frmTelaLogin.php">SAIR</a></li>
                                     </ul>
                                 </li>
                             </ul>
