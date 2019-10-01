@@ -1,7 +1,7 @@
 <?php
 	ini_set('default_charset','UTF-8');
-	require_once "../helpers/checarLogin.php"; 
-    session_start();
+	//require_once "../helpers/checarLogin.php"; 
+	session_start();
 ?>
 <HTML>
     <HEAD>
@@ -31,7 +31,7 @@
                         <div class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo utf8_encode($_SESSION['session_Logado'])?></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo utf8_encode($_SESSION['session_usuarioLogado'])?></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="frmTelaPrincipal.php">TELA PRINCIPAL</a></li>
                                         <li><a href="frmTelaLogin.php">SAIR</a></li>

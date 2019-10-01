@@ -36,18 +36,16 @@ $valor = $_POST['botao'];
 			// Todos os dados foram validados com sucesso;
 			if($validate->validate())
 			{
+				$notificacao = pegaValores();
 				//Instânciando
 				$instancia = new DaoNotificacao();
 				if($_POST['acao'] == 'adicionar')
 				{	
-					$notificacao = pegaValores();					
-					 
 					// Chamando função para cadastrar noticia no banco de dados
 					$instancia->inserirNotificacao($notificacao);
 				}
 				else
-				{
-					$notificacao = pegaValores();					
+				{				
 					// Chamando função para cadastrar noticia no banco de dados
 					$instancia->atualizarNotificacao($notificacao);
 				}
@@ -109,17 +107,19 @@ $valor = $_POST['botao'];
 		$Ds_PontoProximo = $_POST['Ds_PontoProximo'];
 		$Ds_Notificacao = $_POST['Ds_Notificacao'];
 		$ID_Notificacao = $_POST['ID_Notificacao'];
-		$ID_Usuario = $_POST['ID_Usuario'];
+		$St_Notificacao = "ATIVA";
+		$ID_Usuario = 1 /*$_SESSION['session_ID_Logado']*/;
 		
 		//Imagem
-		$instancia = new DaoUsuario();
-		$ID_Notificacao = $instancia->retornaUltimoId()+1;
+		$instancia = new DaoNotificacao();
+		$ID_Notificacao = $instancia->retornaUltimoId();
+		$ID_Notificacao += 1;
 		
 		$extensao = strtolower(substr($_FILES['Ft_Notificacao']['name'], -4));
 		$novo_nome =  $ID_Usuario . 'notificacao' . $extensao;
 		$diretorio = "../resources/img/notificacao";
 		
-		move_uploaded_file($_FILES['Ft_Usuario']['tmp_name'], $diretorio . $novo_nome);
+		move_uploaded_file($_FILES['Ft_Notificacao']['tmp_name'], $diretorio . $novo_nome);
 		
 		$Ft_Notificacao = $diretorio.'/'.$novo_nome;
 		

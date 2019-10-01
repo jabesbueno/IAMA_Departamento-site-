@@ -1,8 +1,8 @@
 <?php
-ini_set('default_charset','UTF-8'); 
+ini_set('default_charset','UTF-8');
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese'); 
 session_start();
-
-$_SESSION['session_Logado'] = null;
+$_SESSION['session_usuarioLogado'] = null;
 
 if(!isset($_SESSION['session_validaLogin'])) $_SESSION['session_validaLogin'] = '';
 if(!isset($_SESSION['session_validarUsuario'])) $_SESSION['session_validarUsuario'] = '';

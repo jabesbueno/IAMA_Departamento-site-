@@ -132,8 +132,8 @@ switch ($valor)
 					$_SESSION['session_validaLogin'] = null;
 					$_SESSION['session_validarUsuario'] = null;
 					$_SESSION['session_validarSenha'] = null;
-					$_SESSION['session_Logado'] = $Nm_Usuario;
-					$_SESSION['session_ultimaAtividade'] = time();
+					$_SESSION['session_usuarioLogado'] = $Nm_Usuario;
+					//$_SESSION['session_ultimaAtividade'] = time();
 					header("Location: ../views/frmTelaPrincipal.php");
 				}
 			}

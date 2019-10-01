@@ -90,6 +90,19 @@ class DaoUsuario{
 		}  
 		return $count;
 	}
+
+	public function buscaId($Nm_Usuario)
+	{
+		try{
+			$conec = conec::conecta_mysql();
+			$select = $conec->prepare("SELECT ID_Usuario FROM TB_Usuario WHERE Nm_Usuario = :Nm_Usuario");
+			$select->bindValue(":Nm_Usuario",$Nm_Usuario);
+			$select->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		} 	
+		return $select;
+	}
 	
 	
 }

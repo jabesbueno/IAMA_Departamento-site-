@@ -1,11 +1,14 @@
 <?php
 	include_once "../dao/daoNotificacao.php";
-	require_once "../helpers/checarLogin.php"; 
+	//require_once "../helpers/checarLogin.php"; 
 	if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#notificacao");
 	
 	$busca = new DaoNotificacao();
 	$select = $busca->buscaNotificacao();
 	
+	if(!isset($_SESSION['session_pesquisaNotificacao'])) $_SESSION['session_pesquisaNotificacao'] = '';
+    if(!isset($_SESSION['session_listarNotificacao'])) $_SESSION['session_listarNotificacao'] = 'normal';
+
 	if(!isset($_SESSION['sessionNotificacao_Nm_Bairro'])) $_SESSION['sessionNotificacao_Nm_Bairro'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Nm_Rua'])) $_SESSION['sessionNotificacao_Nm_Rua'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Dt_Notificacao'])) $_SESSION['sessionNotificacao_Dt_Notificacao'] = '';
@@ -44,7 +47,7 @@
                     <div class="modal-header">
                         <h3 class="modal-title">Notificação</h3>
                     </div>
-                    <form name="formNotificacao" id="formNotificacao" method="post" action="../../controllers/controllerNotificacao.php">
+                    <form name="formNotificacao" id="formNotificacao" method="post" action="../controllers/controllerNotificacao.php">
                         <div class="modal-body">
                             <input type="hidden" name="ID_Notificacao" />
                             <input type="hidden" name="acao" value="" />
@@ -123,8 +126,8 @@
                                 <td><?php echo $notificacao["Nm_Rua"] ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
                                 <td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
-                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="editar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_editar_notificacao">Editar</a></td>
-                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>
+                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="editar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_editar_notificacao">Visualizar</a></td>
+                                <!--<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>-->
                             </tr>
                     <?php 
                         }
@@ -138,11 +141,11 @@
                         { ?>
                             <tr>
                                 <td><?php echo utf8_encode($notificacao["Nm_Bairro"]) ?></td>
-                                <td><?php echo $notificacao["Nm_Rua"] ?></td>
+                                <td><?php echo utf8_encode($notificacao["Nm_Rua"]) ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
                                 <td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
-                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="editar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_editar_notificacao">Editar</a></td>
-                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>
+                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
+                                <!--<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>-->
                             </tr>
                     <?php 
                         }

@@ -10,7 +10,7 @@ if(!isset($_SESSION['session_usuarioLogado']) || $_SESSION['session_usuarioLogad
 	
 	exit;
 }
-else
+/*else
 {
 	if( isset($_SESSION['session_ultimaAtividade']) && (time() - $_SESSION['session_ultimaAtividade'] > 1800) )
 	{
@@ -31,6 +31,6 @@ else
 		session_regenerate_id(true);
 		$_SESSION['session_ultimaAtividade'] = time();
 	}
-}	
+}*/	
 ?>
 
