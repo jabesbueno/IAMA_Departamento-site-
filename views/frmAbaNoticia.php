@@ -49,7 +49,7 @@
 					<form name="formNoticia" id="formNoticia" enctype="multipart/form-data" method="post" action="../controllers/controllerNoticia.php">
 						<div class="modal-body">
 							<input type="hidden" name="ID_Noticia" value="" />
-							<input type="hidden" name="ID_Usuario" value="1" />
+							<input type="hidden" name="ID_Usuario" value="" />
 							<input type="hidden" name="acao" value="" />
 							<div class="row">
 								<div class="col-md-12">

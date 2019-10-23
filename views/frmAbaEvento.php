@@ -32,7 +32,7 @@
 			 <form name="formPesquisaEvento" id="formPesquisaEvento"method="post" action="../controllers/controllerEvento.php">
                 <div class="col-sm-8">
                     <span class="pull-right">
-                    <input type="text" class="form-control frm-pesquisa" id="Ds_PesquisaEvento" name="Ds_PesquisaEvento" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaEvento'] ?>" placeholder="USUARIO">
+                    <input type="text" class="form-control frm-pesquisa" id="Ds_PesquisaEvento" name="Ds_PesquisaEvento" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaEvento'] ?>" placeholder="EVENTO">
                     </span>
                 </div>
                 <div class="col-md-2">
@@ -50,7 +50,7 @@
 					<form name="formEvento" id="formEvento" enctype="multipart/form-data" method="post" action="../controllers/controllerEvento.php">
 						<div class="modal-body">
 							<input type="hidden" name="ID_Evento" value="" />
-							<input type="hidden" name="ID_Usuario" value="1" />
+							<input type="hidden" name="ID_Usuario" value="<?PHP $_SESSION['session_ID_Logado'] ?>" />
 							<input type="hidden" name="acao" value="" />
 							<div class="row">
 								<div class="col-md-8">

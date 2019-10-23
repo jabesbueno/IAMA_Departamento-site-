@@ -106,7 +106,7 @@ $valor = $_POST['botao'];
 		$Ds_Evento = $_POST['Ds_Evento'];
 		$St_Evento = 'ATIVO';
 		$ID_Evento = $_POST['ID_Evento'];
-		$ID_Usuario = $_POST['ID_Usuario'];
+		$ID_Usuario = $_SESSION['session_ID_Logado'];
 		
 		// Adicionando valores ao objeto
 		$evento = new classeEvento($Nm_Evento, $Dt_Evento, $Hr_Evento, $Nm_Local, $Ds_Evento,$St_Evento, $ID_Usuario, $ID_Evento);

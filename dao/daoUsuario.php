@@ -88,6 +88,10 @@ class DaoUsuario{
 		}catch(Exception $e){
 		  echo "Erro ".$e;
 		}  
+		while($select2 = $result->fetch())
+		{
+			$_SESSION['session_ID_Logado'] = $select2["ID_Usuario"];	
+		}
 		return $count;
 	}
 

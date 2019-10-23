@@ -120,6 +120,22 @@ $(document).ready(function()
 		$('#modalExcluirNoticia').modal();
 	});
 	
+	//Visualizando notificacao
+	$('.btn_visualizar_notificacao').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+        
+        $('#formVisualizaNotificacao input[name="ID_Notificacao"').val(dados.ID_Notificacao);
+		$('#formVisualizaNotificacao input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formVisualizaNotificacao input[name="Nm_Bairro"').val(dados.Nm_Bairro);
+		$('#formVisualizaNotificacao input[name="Nm_Rua"]').val(dados.Nm_Rua);
+		$('#formVisualizaNotificacao input[name="Ds_PontoProximo"]').val(dados.Ds_PontoProximo);
+		document.getElementById("Fot_Notificacao").src = dados.Ft_Notificacao;
+		$('#formVisualizaNotificacao textarea[name="Ds_Notificacao"]').val(dados.Ds_Notificacao);
+		
+		$('#modalNotificacaoVisaulizacao').modal();
+	});
+	
 	// Barrar acesso a tab caso a mesma esteja disabled
 	$('a[data-toggle="tab"]').on('click', function() {				
 		if ($(this).parent('li').hasClass('disabled')) {

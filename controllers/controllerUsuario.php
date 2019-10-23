@@ -143,25 +143,31 @@ switch ($valor)
 	function pegaValores()
 	{
 		//atribuição dos valores nas váriaveis via POST
-		$encoding = mb_internal_encoding();
-		$Nm_Usuario = mb_strtoupper($_POST['Nm_Usuario'],$encoding);
+		$Nm_Usuario = $_POST['Nm_Usuario'];
 		$Ds_Senha = sha1($_POST['Ds_Senha']);
-		$Tp_Usuario = mb_strtoupper($_POST['Tp_Usuario'],$encoding);
+		$Tp_Usuario = $_POST['Tp_Usuario'];
 		$Nr_Cpf = $_POST['Nr_Cpf'];
 		$Dt_Nascimento = $_POST['Dt_Nascimento'];
-		$St_Usuario = mb_strtoupper('ATIVO',$encoding);
+		$St_Usuario = 'ATIVO';
 		
 		//Imagem
 		$instancia = new DaoUsuario();
 		$ID_Usuario = $instancia->retornaUltimoId()+1;
 		
+		$diretorio = "../resources/img/{$ID_Usuario}/";
+		if(!file_exists($diretorio)) mkdir($diretorio, 0777);
+		$arquivos = glob($diretorio . 'foto.*');
+			foreach ($arquivos as $arquivo) {
+				unlink($arquivo);
+			}
+		
 		$extensao = strtolower(substr($_FILES['Ft_Usuario']['name'], -4));
-		$novo_nome =  $ID_Usuario . 'foto' . $extensao;
-		$diretorio = "../resources/img/";
+		$novo_nome = $diretorio.'foto'.$extensao;
+
 		
-		move_uploaded_file($_FILES['Ft_Usuario']['tmp_name'], $diretorio . $novo_nome);
+		move_uploaded_file($_FILES['Ft_Usuario']['tmp_name'], $novo_nome);
 		
-		$Ft_Usuario = $diretorio.'/'.$novo_nome;
+		$Ft_Usuario = $novo_nome;
 		
 		// Adicionando valores ao objeto
 		$usuario = new classeUsuario($Nm_Usuario, $Ds_Senha, $Tp_Usuario, $Ft_Usuario, $Nr_Cpf, $Dt_Nascimento, $St_Usuario, $ID_Usuario);

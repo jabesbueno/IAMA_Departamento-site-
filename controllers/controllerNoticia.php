@@ -100,7 +100,7 @@ $valor = $_POST['botao'];
 		$Hr_Noticia = $_POST['Hr_Noticia'];
 		$Ds_Noticia = $_POST['Ds_Noticia'];
 		$ID_Noticia = $_POST['ID_Noticia'];
-		$ID_Usuario = $_POST['ID_Usuario'];
+		$ID_Usuario = $_SESSION['session_ID_Logado'];
 		
 		// Adicionando valores ao objeto
 		$noticia = new classeNoticia($Nm_Noticia, $Ds_Noticia, $Dt_Noticia, $Hr_Noticia, $ID_Usuario, $ID_Noticia);

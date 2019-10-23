@@ -1,5 +1,6 @@
 <?php
-ini_set('default_charset','UTF-8'); 
+ini_set('default_charset','UTF-8');
+date_default_timezone_set('America/Sao_Paulo'); 
 include_once "../classes/classeNotificacao.php";
 include_once "../dao/daoNotificacao.php";  
 include '../libraries/Data_validator.php';
@@ -27,9 +28,8 @@ $valor = $_POST['botao'];
 	
 			$validate->set('Nm_Bairro', $_POST['Nm_Bairro'])->is_required()
 					 ->set('Nm_Rua', $_POST['Nm_Rua'])->is_required()
-					 ->set('Dt_Notificacao', $_POST['Dt_Notificacao'])->is_required()
 					 ->set('Ds_PontoProximo', $_POST['Ds_PontoProximo'])->is_required()
-					 ->set('Ft_Notificacao', $_POST['Ft_Notificacao'])->is_required()
+					 ->set('Ft_Notificacao', $_FILES['Ft_Notificacao'])->is_required()
 					 ->set('Ds_Notificacao', $_POST['Ds_Notificacao'])->is_required();
 			
 					
@@ -53,7 +53,6 @@ $valor = $_POST['botao'];
 				$_SESSION['sessionNotificacao_ID_Notificacao'] = null;
 				$_SESSION['sessionNotificacao_Nm_Bairro'] = null;
 				$_SESSION['sessionNotificacao_Nm_Rua'] = null;
-				$_SESSION['sessionNotificacao_Dt_Notificacao'] = null;
 				$_SESSION['sessionNotificacao_Ds_PontoProximo'] = null;
 				$_SESSION['sessionNotificacao_Ft_Notificacao'] = null;
 				$_SESSION['sessionNotificacao_Ds_Notificacao'] = null;
@@ -66,7 +65,6 @@ $valor = $_POST['botao'];
 											
 					if (isset($erros['erro_Nm_Bairro'][0]) != null) $_SESSION['sessionNotificacao_Nm_Bairro'] = "• " . $erros['erro_Nm_Bairro'][0];
 					if (isset($erros['erro_Nm_Rua'][0]) != null) $_SESSION['sessionNotificacao_Nm_Rua'] = "• " . $erros['erro_Nm_Rua'][0];
-					if (isset($erros['erro_Dt_Notificacao'][0]) != null) $_SESSION['sessionNotificacao_Dt_Notificacao'] = "• " . $erros['erro_Dt_Notificacao'][0];
 					if (isset($erros['erro_Ds_PontoProximo'][0]) != null) $_SESSION['sessionNotificacao_Ds_PontoProximo'] = "• " . $erros['erro_Ds_PontoProximo'][0];
 					if (isset($erros['erro_Ft_Notificacao'][0]) != null) $_SESSION['sessionNotificacao_Ft_Notificacao'] = "• " . $erros['erro_Ft_Notificacao'][0];
 					if (isset($erros['erro_Ds_Notificacao'][0]) != null) $_SESSION['sessionNotificacao_Ds_Notificacao'] = "• " . $erros['erro_Ds_Notificacao'][0];
@@ -103,25 +101,32 @@ $valor = $_POST['botao'];
 		//atribuição dos valores nas váriaveis via POST
 		$Nm_Bairro = $_POST['Nm_Bairro'];
 		$Nm_Rua = $_POST['Nm_Rua'];
-		$Dt_Notificacao = $_POST['Dt_Notificacao'];
+		$Dt_Notificacao = date('Y-m-d');
 		$Ds_PontoProximo = $_POST['Ds_PontoProximo'];
 		$Ds_Notificacao = $_POST['Ds_Notificacao'];
 		$ID_Notificacao = $_POST['ID_Notificacao'];
 		$St_Notificacao = "ATIVA";
-		$ID_Usuario = 1 /*$_SESSION['session_ID_Logado']*/;
+		$ID_Usuario = $_SESSION['session_ID_Logado'];
 		
 		//Imagem
 		$instancia = new DaoNotificacao();
 		$ID_Notificacao = $instancia->retornaUltimoId();
 		$ID_Notificacao += 1;
 		
+		$diretorio = "../resources/img/{$ID_Notificacao}/";
+		if(!file_exists($diretorio)) mkdir($diretorio, 0777);
+		$arquivos = glob($diretorio . 'notificacao.*');
+			foreach ($arquivos as $arquivo) {
+				unlink($arquivo);
+			}
 		$extensao = strtolower(substr($_FILES['Ft_Notificacao']['name'], -4));
-		$novo_nome =  $ID_Usuario . 'notificacao' . $extensao;
-		$diretorio = "../resources/img/notificacao";
 		
-		move_uploaded_file($_FILES['Ft_Notificacao']['tmp_name'], $diretorio . $novo_nome);
+		$novo_nome = $diretorio.'notificacao'.$extensao;
 		
-		$Ft_Notificacao = $diretorio.'/'.$novo_nome;
+		
+		move_uploaded_file($_FILES['Ft_Notificacao']['tmp_name'],$novo_nome);
+		
+		$Ft_Notificacao = $novo_nome;
 		
 		// Adicionando valores ao objeto
 		$notificacao = new classeNotificacao($Nm_Bairro, $Nm_Rua, $Dt_Notificacao, $Ds_PontoProximo, $Ft_Notificacao, $Ds_Notificacao, $St_Notificacao, $ID_Usuario, $ID_Notificacao);

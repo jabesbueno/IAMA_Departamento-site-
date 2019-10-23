@@ -26,7 +26,7 @@
                             <span class=""></span>
                             <span class=""></span>
                             </button>
-                            <a class="navbar-brand" href="frmTelaPrincipal.php">Departamento Meio Ambiente</a>
+                            <a class="navbar-brand" href="frmTelaPrincipal.php">IAMA</a>
                         </div>
                         <div class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">

@@ -1,4 +1,5 @@
 <?php
+	ini_set('default_charset','UTF-8'); 
 	include_once "../dao/daoNotificacao.php";
 	//require_once "../helpers/checarLogin.php"; 
 	if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#notificacao");
@@ -11,7 +12,6 @@
 
 	if(!isset($_SESSION['sessionNotificacao_Nm_Bairro'])) $_SESSION['sessionNotificacao_Nm_Bairro'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Nm_Rua'])) $_SESSION['sessionNotificacao_Nm_Rua'] = '';
-	if(!isset($_SESSION['sessionNotificacao_Dt_Notificacao'])) $_SESSION['sessionNotificacao_Dt_Notificacao'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Ds_PontoProximo'])) $_SESSION['sessionNotificacao_Ds_PontoProximo'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Ft_Notificacao'])) $_SESSION['sessionNotificacao_Ft_Notificacao'] = '';
 	if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNotificacao_Ds_Notificacao'] = '';
@@ -47,9 +47,10 @@
                     <div class="modal-header">
                         <h3 class="modal-title">Notificação</h3>
                     </div>
-                    <form name="formNotificacao" id="formNotificacao" method="post" action="../controllers/controllerNotificacao.php">
+                    <form name="formNotificacao" id="formNotificacao" method="post" enctype="multipart/form-data" action="../controllers/controllerNotificacao.php">
                         <div class="modal-body">
                             <input type="hidden" name="ID_Notificacao" />
+							<input type="hidden" name="ID_Usuario" value="<?PHP $_SESSION['session_ID_Logado'] ?>" />
                             <input type="hidden" name="acao" value="" />
                             <div class="row">
                                 <div class="col-md-12">
@@ -66,12 +67,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <label for="Dt_Notificacao">Data</label>
-                                    <input type="date" class="form-control frm-data" id="Dt_Notificacao" name="Dt_Notificacao">
-									<?php echo '<div style="Color:red">' . nl2br($_SESSION['sessionNotificacao_Dt_Notificacao']) . '</div>';?>
-                                </div>
-								<div class="col-md-8">
+								<div class="col-md-12">
                                     <label for="Ds_PontoProximo">Ponto próximo</label>
                                     <input type="text" class="form-control" id="Ds_PontoProximo" name="Ds_PontoProximo">
 									<?php echo '<div style="Color:red">' . nl2br($_SESSION['sessionNotificacao_Ds_PontoProximo']) . '</div>';?>
@@ -79,8 +75,8 @@
                             </div>
 							<div class="row">
                                 <div class="col-md-12">
-                                    <label for="Ft_Notificacao">Imagem</label>
-									<img src="" alt="#" class="img-rounded" id="Ft_Notificacao" name="Ft_Notificacao">
+                                    <label for="Ft_Notificacao">Imagem</label><br>
+									<img src="" alt="#" class="img-rounded" id="Foto_Notificacao" name="Foto_Notificacao">
 									<input type="file" id="Ft_Notificacao" class="form-control" name="Ft_Notificacao"/>
 									<?php echo '<div style="Color:red">' . nl2br($_SESSION['sessionNotificacao_Ft_Notificacao']) . '</div>';?>
                                 </div>
@@ -103,6 +99,58 @@
             </div>
         </div>
         <!-- FIM DO MODAL -->
+		
+		 <!-- MODAL DE NOTIFICAÇÃO DE VISUALIZAÇÃO -->
+        <div id="modalNotificacaoVisaulizacao" class="modal fade"  tabindex="-1" role="dialog" ref="formVisualizaNotificacao">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Visualizando notificação</h3>
+                    </div>
+                    <form name="formVisualizaNotificacao" id="formVisualizaNotificacao" method="post" enctype="multipart/form-data" action="../controllers/controllerNotificacao.php">
+                        <div class="modal-body">
+                            <input type="hidden" name="ID_Notificacao" />
+							<input type="hidden" name="ID_Usuario"/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="Nm_Bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="Nm_Bairro" name="Nm_Bairro" maxlength="100">
+                                </div>
+                            </div>
+							<div class="row">
+								<div class="col-md-12">
+                                    <label for="Nm_Rua">Rua</label>
+                                    <input type="text" class="form-control" id="Nm_Rua" name="Nm_Rua" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="row">
+								<div class="col-md-12">
+                                    <label for="Ds_PontoProximo">Ponto próximo</label>
+                                    <input type="text" class="form-control" id="Ds_PontoProximo" name="Ds_PontoProximo">
+                                </div>
+                            </div>
+							<div class="row">
+                                <div class="col-md-12">
+                                    <label for="Foto_Notificacao">Imagem</label><br>
+									<img src="" alt="#" class="img-rounded" id="Fot_Notificacao" name="Fot_Notificacao">
+                                </div>
+                            </div>
+							<div class="row">
+								<div class="col-md-12">
+                                    <label for="Ds_Notificacao">Descrição</label>
+                                     <textarea style="resize: none" maxlength = "500" class="form-control" rows="3" id="Ds_Notificacao" name="Ds_Notificacao"></textarea>
+                                </div>
+							</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-responder-notificacao" name="botao" value="4">Responder</button>
+                            <button type="button" class="btn btn-primary btn-fechar-notificacao" name="botao" value="0" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIM DO MODAL DE VISUALIZAÇÃO -->
         <table class="table table-hover">
             <thead thead-default>
                 <tr>
@@ -126,8 +174,7 @@
                                 <td><?php echo $notificacao["Nm_Rua"] ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
                                 <td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
-                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="editar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_editar_notificacao">Visualizar</a></td>
-                                <!--<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $produto)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>-->
+                                <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
                             </tr>
                     <?php 
                         }
