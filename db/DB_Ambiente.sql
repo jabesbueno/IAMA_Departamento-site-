@@ -53,8 +53,7 @@ FOREIGN KEY(ID_Usuario) REFERENCES TB_Usuario (ID_Usuario);
 CREATE TABLE TB_Historico (
 ID_Historico int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 ID_Notificacao int NOT NULL,
-Dt_Historico date NOT NULL,
-Hr_Historico varchar(6) NOT NULL,
+Dt_Historico datetime NOT NULL,
 Ds_Observacao varchar(200)
 );
 ALTER TABLE TB_Historico
@@ -74,4 +73,4 @@ ADD CONSTRAINT FK_Noticia_Usuario
 FOREIGN KEY(ID_Usuario) REFERENCES TB_Usuario (ID_Usuario);
 
 INSERT INTO TB_Usuario(ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario)
-VALUES(1,'jabes bueno',sha1('12345678'),'ADMINISTRADOR','../resources/img//1foto','111.111.111-11','1999-03-11','ATIVO');
+VALUES(1,'jabes bueno',sha1('12345678'),'ADMINISTRADOR','../resources/img//1foto.jpg','111.111.111-11','1999-03-11','ATIVO');

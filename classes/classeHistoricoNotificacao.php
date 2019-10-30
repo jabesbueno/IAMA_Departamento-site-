@@ -3,15 +3,13 @@ class classeHistoricoNotificacao{
    
     private $ID_Historico;
 	private $Dt_Historico;
-	private $Hr_Historico;
 	private $Ds_Observacao;
 	private $ID_Notificacao;
 	
 	//Construtor da Classe
-    public function __construct($Dt_Historico, $Hr_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico)
+    public function __construct($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico)
     {
 	  $this->Dt_Historico = $Dt_Historico;
-	  $this->Hr_Historico = $Hr_Historico;
 	  $this->Ds_Observacao = $Ds_Observacao;
 	  $this->ID_Notificacao = $ID_Notificacao;
 	  $this->ID_Historico = $ID_Historico;
@@ -22,9 +20,6 @@ class classeHistoricoNotificacao{
     }
 	public function get_Dt_Historico() {
         return $this->Dt_Historico;
-    }
-	public function get_Hr_Historico() {
-        return $this->Hr_Historico;
     }
 	public function get_Ds_Observacao() {
         return $this->Ds_Observacao;
@@ -38,9 +33,6 @@ class classeHistoricoNotificacao{
     }
 	public function set_Dt_Historico($Dt_Historico) {
         $this->Dt_Historico = $Dt_Historico;
-    }
-	public function set_Hr_Historico($Hr_Historico) {
-        $this->Hr_Historico = $Hr_Historico;
     }
 	public function set_Ds_Observacao($Ds_Observacao) {
         $this->Ds_Observacao = $Ds_Observacao;

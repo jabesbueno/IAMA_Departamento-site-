@@ -2,7 +2,9 @@
 ini_set('default_charset','UTF-8');
 date_default_timezone_set('America/Sao_Paulo'); 
 include_once "../classes/classeNotificacao.php";
-include_once "../dao/daoNotificacao.php";  
+include_once "../classes/classeHistoricoNotificacao.php";
+include_once "../dao/daoNotificacao.php";
+include_once "../dao/daoHistoricoNotificacao.php";  
 include '../libraries/Data_validator.php';
 session_start();
 $valor = $_POST['botao'];
@@ -39,10 +41,19 @@ $valor = $_POST['botao'];
 				$notificacao = pegaValores();
 				//Instânciando
 				$instancia = new DaoNotificacao();
+				$instanciaHistorico = new DaoHistoricoNotificacao();
 				if($_POST['acao'] == 'adicionar')
 				{	
 					// Chamando função para cadastrar noticia no banco de dados
 					$instancia->inserirNotificacao($notificacao);
+					
+					$Dt_Historico = date('Y-m-d H:i:s');
+					$Ds_Observacao = "";
+					$ID_Notificacao = $instancia->retornaUltimoId();
+					$ID_Historico = 1;
+					
+					$historico = new classeHistoricoNotificacao($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico);
+					$instanciaHistorico->inserirHistorico($historico);
 				}
 				else
 				{				
@@ -91,6 +102,18 @@ $valor = $_POST['botao'];
 			$ID_Notificacao = $_POST['ID_Notificacao'];
 			$delete = new DaoNotificacao();
 			$delete->excluirNotificacao($ID_Notificacao);
+			header("Location: ../views/frmGerenciamento.php#notificacao");
+			break;
+		}
+		case 4://Respondendo notificacao
+		{
+			$ID_Historico = $_POST['ID_Historico'];
+			$ID_Notificacao = $_POST['ID_Notificacao'];
+			$Dt_Historico = date('Y-m-d H:i:s');
+			$Ds_Observacao = $_POST['Ds_Observacao'];
+			$historico = new classeHistoricoNotificacao($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico);
+			$responder = new DaoHistoricoNotificacao();
+			$responder->atualizarHistorico($historico);
 			header("Location: ../views/frmGerenciamento.php#notificacao");
 			break;
 		}

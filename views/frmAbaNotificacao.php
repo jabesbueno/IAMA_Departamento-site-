@@ -18,7 +18,7 @@
 ?>
 <HTML>
     <HEAD>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <TITLE>Notificação</TITLE>
     </HEAD>
     <BODY>
@@ -111,36 +111,20 @@
                         <div class="modal-body">
                             <input type="hidden" name="ID_Notificacao" />
 							<input type="hidden" name="ID_Usuario"/>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="Nm_Bairro">Bairro</label>
-                                    <input type="text" class="form-control" id="Nm_Bairro" name="Nm_Bairro" maxlength="100">
-                                </div>
-                            </div>
-							<div class="row">
-								<div class="col-md-12">
-                                    <label for="Nm_Rua">Rua</label>
-                                    <input type="text" class="form-control" id="Nm_Rua" name="Nm_Rua" maxlength="100">
-                                </div>
-                            </div>
-                            <div class="row">
-								<div class="col-md-12">
-                                    <label for="Ds_PontoProximo">Ponto próximo</label>
-                                    <input type="text" class="form-control" id="Ds_PontoProximo" name="Ds_PontoProximo">
-                                </div>
-                            </div>
+							<input type="hidden" name="ID_Historico"/>
+							<p align="justify" name="txtNotificacao" id="txtNotificacao"><p/>							
 							<div class="row">
                                 <div class="col-md-12">
-                                    <label for="Foto_Notificacao">Imagem</label><br>
-									<img src="" alt="#" class="img-rounded" id="Fot_Notificacao" name="Fot_Notificacao">
+									<img src="" alt="#" class="rounded mx-auto d-block" id="Fot_Notificacao" name="Fot_Notificacao">
                                 </div>
                             </div>
 							<div class="row">
 								<div class="col-md-12">
-                                    <label for="Ds_Notificacao">Descrição</label>
-                                     <textarea style="resize: none" maxlength = "500" class="form-control" rows="3" id="Ds_Notificacao" name="Ds_Notificacao"></textarea>
+                                    <label for="Ds_Observacao">Observação</label>
+                                     <textarea style="resize: none" maxlength = "500" class="form-control" rows="3" id="Ds_Observacao" name="Ds_Observacao" required></textarea>
                                 </div>
 							</div>
+							
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary btn-responder-notificacao" name="botao" value="4">Responder</button>
@@ -173,7 +157,7 @@
                                 <td><?php echo utf8_encode($notificacao["Nm_Bairro"]) ?></td>
                                 <td><?php echo $notificacao["Nm_Rua"] ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
-                                <td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
+                                <td><?php echo utf8_encode($notificacao["Ds_PontoProximo"]) ?></td>
                                 <td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
                             </tr>
                     <?php 

@@ -124,14 +124,16 @@ $(document).ready(function()
 	$('.btn_visualizar_notificacao').click(function()
 	{
         var dados = $.parseJSON($(this).attr('data'));
-        
-        $('#formVisualizaNotificacao input[name="ID_Notificacao"').val(dados.ID_Notificacao);
+		$('#formVisualizaNotificacao input[name="ID_Notificacao"').val(dados.ID_Notificacao);
 		$('#formVisualizaNotificacao input[name="ID_Usuario"]').val(dados.ID_Usuario);
-		$('#formVisualizaNotificacao input[name="Nm_Bairro"').val(dados.Nm_Bairro);
-		$('#formVisualizaNotificacao input[name="Nm_Rua"]').val(dados.Nm_Rua);
-		$('#formVisualizaNotificacao input[name="Ds_PontoProximo"]').val(dados.Ds_PontoProximo);
+		$('#formVisualizaNotificacao input[name="ID_Historico"').val(dados.ID_Historico);
+		$('#formVisualizaNotificacao textarea[name="Ds_Observacao"').val(dados.Ds_Observacao).disabled;
+        document.getElementById("txtNotificacao").innerHTML = " O cidadão <b>"+ dados.Nm_Usuario +
+		"</b> de CPF <b>" + dados.Nr_Cpf + "</b> apresentou uma notificação no dia <b>" + dados.Dt_Notificacao +
+		"</b> encontrada na rua <b>"+ dados.Nm_Rua +"</b> pertencente ao bairro <b>" + dados.Nm_Bairro +
+		"</b> ponto de referência <b>"+ dados.Ds_PontoProximo + "</b>. <br> Relatando a seguinte descrição: <b>"+
+		dados.Ds_Notificacao + "</b> conforme a imagem apresenta abaixo: ";
 		document.getElementById("Fot_Notificacao").src = dados.Ft_Notificacao;
-		$('#formVisualizaNotificacao textarea[name="Ds_Notificacao"]').val(dados.Ds_Notificacao);
 		
 		$('#modalNotificacaoVisaulizacao').modal();
 	});
