@@ -45,7 +45,7 @@ $valor = $_POST['botao'];
 				if($_POST['acao'] == 'adicionar')
 				{	
 					// Chamando função para cadastrar noticia no banco de dados
-					$instancia->inserirNotificacao($notificacao);
+					$r = $instancia->inserirNotificacao($notificacao);
 					
 					$Dt_Historico = date('Y-m-d H:i:s');
 					$Ds_Observacao = "";

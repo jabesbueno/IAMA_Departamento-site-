@@ -15,10 +15,11 @@ class DaoUsuario{
 			$insert->bindValue(":Nr_Cpf", $usuario->get_Nr_Cpf());
 			$insert->bindValue(":Dt_Nascimento", $usuario->get_Dt_Nascimento());
 			$insert->bindValue(":St_Usuario", $usuario->get_St_Usuario());
-			$insert->execute();
+			$result = $insert->execute();
 		}catch(Exception $e){
 			print "Erro:..".$e;
 		} 
+		return $result;
 	}
 	
 	public function retornaUltimoId()

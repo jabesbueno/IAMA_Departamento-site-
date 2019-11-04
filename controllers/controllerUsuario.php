@@ -42,7 +42,7 @@ switch ($valor)
 				//Instânciando 
 				$inserir = new DaoUsuario();
 				// Chamando função para cadastrar usuário no banco de dados
-				$inserir->inserirUsuario($usuario);
+				$r = $inserir->inserirUsuario($usuario);
 				$_SESSION['sessionUsuario_Validacao'] = null;
 			}
 			else

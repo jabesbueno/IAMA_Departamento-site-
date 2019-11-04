@@ -16,10 +16,11 @@ class DaoNotificacao{
 			$insert->bindValue(":Ds_Notificacao", utf8_decode($notificacao->get_Ds_Notificacao()));
 			$insert->bindValue(":St_Notificacao", utf8_decode($notificacao->get_St_Notificacao()));
 			$insert->bindValue(":ID_Usuario", $notificacao->get_ID_Usuario());
-			$insert->execute();
+			$r = $insert->execute();
 		}catch(Exception $e){
 			print "Erro:..".$e;
 		} 
+		return $r;
 	}
 	
 	public function buscaNotificacao() {
