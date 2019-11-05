@@ -10,10 +10,10 @@ class DaoEvento{
 			." VALUES(:Nm_Evento, :Dt_Evento, :Hr_Evento, :Nm_Local, :Ds_Evento, :St_Evento, :ID_Usuario)");
 			$insert->bindValue(":Nm_Evento", utf8_decode($evento->get_Nm_Evento()));
 			$insert->bindValue(":Dt_Evento", $evento->get_Dt_Evento());
-			$insert->bindValue(":Hr_Evento", $evento->get_Hr_Evento());
+			$insert->bindValue(":Hr_Evento", utf8_decode($evento->get_Hr_Evento()));
 			$insert->bindValue(":Nm_Local", utf8_decode($evento->get_Nm_Local()));
 			$insert->bindValue(":Ds_Evento", utf8_decode($evento->get_Ds_Evento()));
-			$insert->bindValue(":St_Evento", $evento->get_St_Evento());
+			$insert->bindValue(":St_Evento", utf8_decode($evento->get_St_Evento()));
 			$insert->bindValue(":ID_Usuario", $evento->get_ID_Usuario());
 			$insert->execute();
 		}catch(Exception $e){
