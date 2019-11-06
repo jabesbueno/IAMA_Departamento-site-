@@ -11,26 +11,25 @@ include_once "../dao/daoUsuario.php";
 	
 	# Se você usa uma Framework, ou esta fazendo código Puro, 
 	# obtenha e processe aqui os dados através do $_POST
-	$Nm_Usuario = $_POST['Nm_Usuario'];
-	$Ds_Senha = sha1($_POST['Ds_Senha']);
-	$Tp_Usuario = "USUARIO";
-	$Ft_Usuario = "";
-	$Nr_Cpf = $_POST['Nr_Cpf'];
-	$Dt_Nascimento = $_POST['Dt_Nascimento'];
-	$St_Usuario = "ATIVO";
-	$ID_Usuario = "";
+	$_dados['Nm_Usuario'] = $_POST['Nm_Usuario'];
+	$_dados['Ds_Senha'] = sha1($_POST['Ds_Senha']);
+	$_dados['Tp_Usuario'] = "USUARIO";
+	$_dados['Ft_Usuario'] = "teste";
+	$_dados['Nr_Cpf'] = $_POST['Nr_Cpf'];
+	$_dados['Dt_Nascimento'] = $_POST['Dt_Nascimento'];
+	$_dados['St_Usuario'] = "ATIVO";
+	$_dados['ID_Usuario'] = "1";
 
-	$usuario = new classeUsuario($Nm_Usuario, $Ds_Senha, $Tp_Usuario, $Ft_Usuario, $Nr_Cpf, $Dt_Nascimento, $St_Usuario, $ID_Usuario);
-	
-	# fazendo validacoes basicas. No caso apenas o E-mail
-	#if( ! $vita->validate->email( $_dados['email'] ) )
-	#    __output_header__( false, 'E-mail inválido.', null);		
+	$usuario = new classeUsuario($_dados['Nm_Usuario'], $_dados['Ds_Senha'], $_dados['Tp_Usuario'], $_dados['Ft_Usuario'], $_dados['Nr_Cpf'], $_dados['Dt_Nascimento'], $_dados['St_Usuario'], $_dados['ID_Usuario']);		
 	
 	# se você usa PHP Puro , use aqui um mysql_insert e escreva a consulta.
 	//Instânciando 
 	$inserir = new DaoUsuario();
 	// Chamando função para cadastrar usuário no banco de dados
 	$r = $inserir->inserirUsuario($usuario);
+	# se erro
+	if( $r === false )
+    __output_header__( false, 'Erro ao casdatrar usuário', null);
 	
 	__output_header__( ($r > 0), "Usuário adicionado com sucesso", $_dados );
 

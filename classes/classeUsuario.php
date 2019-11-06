@@ -11,7 +11,7 @@ class classeUsuario{
 	private $St_Usuario;
 	
 	//Construtor da Classe
-    public function __construct($Nm_Usuario, $Ds_Senha, $Tp_Usuario, $Ft_Usuario, $Nr_Cpf,$Dt_Nascimento, $St_Usuario, $ID_Usuario)
+    public function __construct($Nm_Usuario, $Ds_Senha, $Tp_Usuario, $Ft_Usuario, $Nr_Cpf, $Dt_Nascimento, $St_Usuario, $ID_Usuario)
     {
 	  $this->Nm_Usuario = $Nm_Usuario;
 	  $this->Ds_Senha = $Ds_Senha;

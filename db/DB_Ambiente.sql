@@ -15,7 +15,7 @@ ID_Usuario int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 Nm_Usuario varchar(60) NOT NULL,
 Ds_Senha varchar(50) NOT NULL,
 Tp_Usuario varchar(15) NOT NULL,
-Ft_Usuario varchar(200) NOT NULL,
+Ft_Usuario varchar(200),
 Nr_Cpf char(14) NOT NULL,
 Dt_Nascimento date NOT NULL,
 St_Usuario varchar(15) NOT NULL
