@@ -16,47 +16,44 @@ include_once "../dao/daoHistoricoNotificacao.php";
 	# Se você usa uma Framework, ou esta fazendo código Puro, 
 	# obtenha e processe aqui os dados através do $_POST
 	//atribuição dos valores nas váriaveis via POST
-		$Nm_Bairro = $_POST['Nm_Bairro'];
-		$Nm_Rua = $_POST['Nm_Rua'];
-		$Dt_Notificacao = date('Y-m-d');
-		$Ds_PontoProximo = $_POST['Ds_PontoProximo'];
-		$Ds_Notificacao = $_POST['Ds_Notificacao'];
-		$ID_Notificacao = "";
-		$St_Notificacao = "ATIVA";
-		$ID_Usuario = "1";
-		
-		//Imagem
-		$instancia = new DaoNotificacao();
-		$ID_Notificacao = $instancia->retornaUltimoId();
-		$ID_Notificacao += 1;
-		
-		$diretorio = "../resources/img/{$ID_Notificacao}/";
-		if(!file_exists($diretorio)) mkdir($diretorio, 0777);
-		$arquivos = glob($diretorio . 'notificacao.*');
-			foreach ($arquivos as $arquivo) {
-				unlink($arquivo);
-			}
-		$extensao = strtolower(substr($_FILES['Ft_Notificacao']['name'], -4));
-		
-		$novo_nome = $diretorio.'notificacao'.$extensao;
-		
-		
-		move_uploaded_file($_FILES['Ft_Notificacao']['tmp_name'],$novo_nome);
-		
-		$Ft_Notificacao = $novo_nome;
-		
-		// Adicionando valores ao objeto
-		$notificacao = new classeNotificacao($Nm_Bairro, $Nm_Rua, $Dt_Notificacao, $Ds_PontoProximo, $Ft_Notificacao, $Ds_Notificacao, $St_Notificacao, $ID_Usuario, $ID_Notificacao);
+	$_dados['Nm_Bairro'] = $_POST['Nm_Bairro'];
+	$_dados['Nm_Rua'] = $_POST['Nm_Rua'];
+	$_dados['Dt_Notificacao'] = date('Y-m-d');
+	$_dados['Ds_PontoProximo'] = $_POST['Ds_PontoProximo'];
+	$_dados['Ds_Notificacao'] = $_POST['Ds_Notificacao'];
+	$_dados['ID_Notificacao'] = "";
+	$_dados['St_Notificacao'] = "ATIVA";
+	$_dados['ID_Usuario'] = "1";
 	
-	# fazendo validacoes basicas. No caso apenas o E-mail
-	#if( ! $vita->validate->email( $_dados['email'] ) )
-	#    __output_header__( false, 'E-mail inválido.', null);		
+	//Imagem
+	$instancia = new DaoNotificacao();
+	$ID_Notificacao = $instancia->retornaUltimoId();
+	$ID_Notificacao += 1;
+	
+	$diretorio = "../resources/img/{$ID_Notificacao}/";
+	if(!file_exists($diretorio)) mkdir($diretorio, 0777);
+	$arquivos = glob($diretorio . 'notificacao.*');
+		foreach ($arquivos as $arquivo) {
+			unlink($arquivo);
+		}
+	$extensao = strtolower(substr($_FILES['Ft_Notificacao']['name'], -4));
+	
+	$novo_nome = $diretorio.'notificacao'.$extensao;
+	
+	
+	move_uploaded_file($_FILES['Ft_Notificacao']['tmp_name'],$novo_nome);
+	
+	$_dados['Ft_Notificacao'] = $novo_nome;
+	
+	// Adicionando valores ao objeto
+	$notificacao = new classeNotificacao($_dados['Nm_Bairro'], $_dados['Nm_Rua'], $_dados['Dt_Notificacao'], $_dados['Ds_PontoProximo'], $_dados['Ft_Notificacao'], $_dados['Ds_Notificacao'], $_dados['St_Notificacao'], $_dados['ID_Usuario'], $_dados['ID_Notificacao']);		
 	
 	# se você usa PHP Puro , use aqui um mysql_insert e escreva a consulta.
 	//Instânciando 
 	$instancia = new DaoNotificacao();
+	$r = $instancia->inserirNotificacao($notificacao);
+	//Salvando Histórico
 	$instanciaHistorico = new DaoHistoricoNotificacao();
-	// Chamando função para cadastrar usuário no banco de dados
 	$Dt_Historico = date('Y-m-d H:i:s');
 	$Ds_Observacao = "";
 	$ID_Notificacao = $instancia->retornaUltimoId();
@@ -64,6 +61,9 @@ include_once "../dao/daoHistoricoNotificacao.php";
 					
 	$historico = new classeHistoricoNotificacao($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico);
 	$instanciaHistorico->inserirHistorico($historico);
+	
+	if( $r === false )
+    __output_header__( false, 'Erro ao subir notificação', null);
 	
 	__output_header__( ($r > 0), "Notificação adicionada com sucesso", $_dados );
 

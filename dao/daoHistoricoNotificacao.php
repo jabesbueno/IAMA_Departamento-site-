@@ -29,5 +29,25 @@ class DaoHistoricoNotificacao{
 			print "Erro:..".$e;
 		} 
 	}
+	
+	public function buscaHistorico($ID_Notificacao){
+		try{
+			$conec = conec::conecta_mysql();
+			$select = $conec->prepare("SELECT ID_Historico, ID_Notificacao, Dt_Historico, Ds_Observacao FROM TB_Historico WHERE ID_Notificacao = :ID_Notificacao");
+			$select->bindValue(":ID_Notificacao", $ID_Notificacao);
+			$select->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		}
+		$arr = array();
+		while($select2 = $select->fetch())
+		{
+			$arr['ID_Historico'] = $select2["ID_Historico"];
+			$arr['ID_Notificacao'] = $select2["ID_Notificacao"];
+			$arr['Dt_Historico'] = $select2["Dt_Historico"];
+			$arr['Ds_Observacao'] = $select2["Ds_Observacao"];			
+		}
+		return $arr;
+	}
 }
 ?>

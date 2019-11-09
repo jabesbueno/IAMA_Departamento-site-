@@ -105,8 +105,12 @@ class DaoUsuario{
 			$select->execute();
 		}catch(Exception $e){
 			print "Erro:..".$e;
-		} 	
-		return $select;
+		}
+		while($select2 = $select->fetch())
+		{
+			$r = $select2["ID_Usuario"];	
+		}
+		return $r;
 	}
 	
 	
