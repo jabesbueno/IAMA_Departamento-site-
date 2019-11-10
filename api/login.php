@@ -19,12 +19,30 @@ $r = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
 # se erro
 if( $r === false )
     __output_header__( false, 'Usuário não encontrado.', null);
+//Aplicação
+$key = 'iama123456';
+//Header - Token
+$header = [
+			'typ' => 'JWT',
+			'alg' => 'HS256'
+		];
+//Payload - Content
+$payload = [
+			'exp' => (new DateTime("now"))->getTimestamp(),
+			'Nm_Usuario' => $Nm_Usuario,
+			'Ds_Senha' => $Ds_Senha,
+		];
+//JSON		
+$header = json_encode($header);
+$payload = json_encode($payload);
+//Base 64
+$header = base64_encode($header);
+$payload = base64_encode($payload);
+//Sign
+$sign = hash_hmac('sha256', $header . "." . $payload, $key, true);
+$sign = base64_encode($sign);
 
-$id = $select->buscaId($Nm_Usuario);
-$r = array();
-$r['ID_Usuario'] = sha1($id);
-$r['Nm_Usuario'] = sha1($Nm_Usuario);
-$r['Ds_Senha'] = sha1($Ds_Senha); 
+$r = $header . '.' . $payload . '.' . $sign;		
 # se sucesso
 __output_header__( true, 'logado', $r );
 ?>
