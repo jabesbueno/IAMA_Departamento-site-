@@ -16,7 +16,7 @@ while($res = $result->fetch())
 {
 	$r[] = $res;
 }
- 
+print_r($result);
 # se erro
 if( $r === false )
     __output_header__( false, 'Não há noticias!', null);

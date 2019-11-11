@@ -7,8 +7,59 @@ require_once 'webservice_init.php';
 include_once "../classes/classeNotificacao.php";
 include_once "../classes/classeHistoricoNotificacao.php";
 include_once "../dao/daoNotificacao.php";
-include_once "../dao/daoHistoricoNotificacao.php"; 
+include_once "../dao/daoHistoricoNotificacao.php";
+include_once "../dao/daoUsuario.php";  
+#--------------------------------------------------------
+$r = false;
+$contador = 0;
+$token = $_POST['Ds_Autorizacao'];
+if($token == "")
+{
+	__output_header__( false, 'Não autorizado', null);
+}
 
+for($i = 0; $i < strlen($token); $i++)
+{
+	if($token[$i] == ".")
+	{
+		$contador .= 1;
+	}
+}
+
+if($contador != 2 )
+{
+	__output_header__( false, 'Não autorizado', null);
+}
+else
+{
+	$autorizacao = explode('.',$token);
+	$teste = $autorizacao[1];
+	$teste = base64_decode($teste);
+	$array = array();
+	$teste = json_decode($teste);
+	foreach($teste as $teste2)
+	{
+		$array[] = $teste2;
+	}
+	$Nm_Usuario = $array[1];
+	$Ds_Senha = $array[2];
+}
+$select = new DaoUsuario();
+$valida = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
+if($valida == 0)
+{
+	$r = false;
+}
+else
+{
+	$r = true;
+}
+
+if($r == false)
+{
+	__output_header__( false, 'Não autorizado', null);
+}
+else{
 	# verificando se o método de envio é mesmo  POST.
 	if( $_SERVER['REQUEST_METHOD'] !== "POST" )
 		__output_header__( false, "Método de requisição não aceito.", null );
@@ -33,9 +84,9 @@ include_once "../dao/daoHistoricoNotificacao.php";
 	$diretorio = "../resources/img/{$ID_Notificacao}/";
 	if(!file_exists($diretorio)) mkdir($diretorio, 0777);
 	$arquivos = glob($diretorio . 'notificacao.*');
-		foreach ($arquivos as $arquivo) {
-			unlink($arquivo);
-		}
+	foreach ($arquivos as $arquivo) {
+		unlink($arquivo);
+	}
 	$extensao = strtolower(substr($_FILES['Ft_Notificacao']['name'], -4));
 	
 	$novo_nome = $diretorio.'notificacao'.$extensao;
@@ -58,14 +109,14 @@ include_once "../dao/daoHistoricoNotificacao.php";
 	$Ds_Observacao = "";
 	$ID_Notificacao = $instancia->retornaUltimoId();
 	$ID_Historico = 1;
-					
+	
 	$historico = new classeHistoricoNotificacao($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico);
 	$instanciaHistorico->inserirHistorico($historico);
 	
 	if( $r === false )
-    __output_header__( false, 'Erro ao subir notificação', null);
+		__output_header__( false, 'Erro ao subir notificação', null);
 	
 	__output_header__( ($r > 0), "Notificação adicionada com sucesso", $_dados );
-
+}
 #
 ?>

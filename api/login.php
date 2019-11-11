@@ -14,8 +14,15 @@ $Ds_Senha = $_POST['Ds_Senha'];
  
 # realizando consulta SQL
 $select = new DaoUsuario();
-$r = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
- 
+$valida = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
+if($valida == 0)
+{
+	$r = false;
+}
+else
+{
+	$r = true;
+}
 # se erro
 if( $r === false )
     __output_header__( false, 'Usuário não encontrado.', null);
