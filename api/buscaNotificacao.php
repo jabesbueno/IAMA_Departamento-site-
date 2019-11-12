@@ -1,7 +1,7 @@
 <?php
 #
 require_once 'webservice_init.php';
-include_once "../dao/daoNoticia.php";
+include_once "../dao/daoNotificacao.php";
 include_once "../dao/daoUsuario.php";  
 #--------------------------------------------------------
 # verificando se estamos recebendo um GET. Não aceitamos POST
@@ -58,9 +58,10 @@ if($r == false)
 	__output_header__( false, 'Não autorizado', null);
 }
 else{
+	$ID_Usuario = $select->buscaId($Nm_Usuario);
 	# realizando consulta SQL
-	$busca = new DaoNoticia();
-	$result = $busca->buscaNoticia();
+	$busca = new DaoNotificacao();
+	$result = $busca->buscaNotificacaoById($ID_Usuario);
 	
 	$r = array();
 	while($res = $result->fetch())
@@ -69,7 +70,7 @@ else{
 	}
 	# se erro
 	if( $r === false )
-		__output_header__( false, 'Não há noticias!', null);
+		__output_header__( false, 'Não há notificações!', null);
 	
 	# se sucesso
 	__output_header__( true, null, $r);

@@ -10,10 +10,14 @@ include_once "../dao/daoNotificacao.php";
 include_once "../dao/daoHistoricoNotificacao.php";
 include_once "../dao/daoUsuario.php";  
 #--------------------------------------------------------
+# verificando se o método de envio é mesmo  POST.
+	if( $_SERVER['REQUEST_METHOD'] !== "POST" )
+		__output_header__( false, "Método de requisição não aceito.", null );
+
 $r = false;
 $contador = 0;
 $token = $_POST['Ds_Autorizacao'];
-if($token == "")
+if($token === "")
 {
 	__output_header__( false, 'Não autorizado', null);
 }
@@ -22,11 +26,11 @@ for($i = 0; $i < strlen($token); $i++)
 {
 	if($token[$i] == ".")
 	{
-		$contador .= 1;
+		$contador = $contador + 1;
 	}
 }
 
-if($contador != 2 )
+if($contador !== 2 )
 {
 	__output_header__( false, 'Não autorizado', null);
 }
@@ -60,10 +64,6 @@ if($r == false)
 	__output_header__( false, 'Não autorizado', null);
 }
 else{
-	# verificando se o método de envio é mesmo  POST.
-	if( $_SERVER['REQUEST_METHOD'] !== "POST" )
-		__output_header__( false, "Método de requisição não aceito.", null );
-	
 	# Se você usa uma Framework, ou esta fazendo código Puro, 
 	# obtenha e processe aqui os dados através do $_POST
 	//atribuição dos valores nas váriaveis via POST
@@ -74,7 +74,7 @@ else{
 	$_dados['Ds_Notificacao'] = $_POST['Ds_Notificacao'];
 	$_dados['ID_Notificacao'] = "";
 	$_dados['St_Notificacao'] = "ATIVA";
-	$_dados['ID_Usuario'] = "1";
+	$_dados['ID_Usuario'] = $select->buscaId($Nm_Usuario);
 	
 	//Imagem
 	$instancia = new DaoNotificacao();
