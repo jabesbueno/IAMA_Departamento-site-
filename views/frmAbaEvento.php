@@ -29,16 +29,14 @@
 			<div class="col-md-2">
                     <button type="button" class="btn btn-primary btn_adicionar_evento" href="#" data-toggle="modal" data-target="#modalEvento">Adicionar Evento</button>
              </div>
-			 <form name="formPesquisaEvento" id="formPesquisaEvento"method="post" action="../controllers/controllerEvento.php">
-                <div class="col-sm-8">
-                    <span class="pull-right">
-                    <input type="text" class="form-control frm-pesquisa" id="Ds_PesquisaEvento" name="Ds_PesquisaEvento" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaEvento'] ?>" placeholder="EVENTO">
-                    </span>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-pesquisar-evento" name="botao" value="2">Pesquisar</button>
-                </div>
-            </form>
+			 <div class="col-xs-6">
+			</div>
+			<div class="col-xs-4">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" id="icone_busca" aria-hidden="true"></span></span>
+					<input type="text" class="form-control frm-pesquisa " id="Bs_Evento" name="Bs_Evento" style="text-transform:uppercase" maxlength="100" placeholder="PESQUISAR" aria-describedby="basic-addon1">
+				</div>
+			</div>
 		</div>
 		<!-- MODAL DE USUARIO -->
         <div id="modalEvento" class="modal fade" tabindex="-1" role="dialog" ref="formEvento">
@@ -134,8 +132,17 @@
 		</div>
 		<!-- Fim do Modal-->
 		<br>
-        <table class="table table-hover">
-            <thead thead-default>
+        <table id="table_evento" class="table table-striped table-inverse table-bordered">
+            <colgroup>
+				<col style="width:5%">
+				<col style="width:40%">
+				<col style="width:15%">
+				<col style="width:10%">
+				<col style="width:10%">
+				<col style="width:10%">
+				<col style="width:10%">
+			</colgroup>
+			<thead thead-default>
                 <tr>
                     <th>#</th>
 					<th>Evento</th>
@@ -143,6 +150,7 @@
                     <th>Hora</th>
                     <th>Status</th>
                     <th></th>
+					<th></th>
                 </tr>
             </thead>
             <tbody>

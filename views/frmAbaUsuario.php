@@ -38,16 +38,14 @@ $select2 = $busca->buscaUsuarioESP($_SESSION['session_pesquisaUsuario']);
 		<div class="col-md-2">
 			<button type="button" class="btn btn-primary btn_adicionar_usuario" href="#" data-toggle="modal" data-target="#modalUsuario">Adicionar Usuário</button>
 		</div>
-		<form name="formPesquisaUsuario" id="formPesquisaUsuario"method="post" action="../controllers/controllerUsuario.php">
-			<div class="col-sm-8">
-				<span class="pull-right">
-					<input type="text" class="form-control frm-pesquisa" id="Ds_Pesquisa" name="Ds_Pesquisa" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaUsuario'] ?>" placeholder="USUARIO">
-				</span>
+		<div class="col-xs-6">
 			</div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-primary btn-pesquisar-usuario" name="botao" value="2">Pesquisar</button>
+			<div class="col-xs-4">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" id="icone_busca" aria-hidden="true"></span></span>
+					<input type="text" class="form-control frm-pesquisa " id="Bs_Usuario" name="Bs_Usuario" style="text-transform:uppercase" maxlength="100" placeholder="PESQUISAR" aria-describedby="basic-addon1">
+				</div>
 			</div>
-		</form>
 	</div>
 	<!-- MODAL DE USUARIO -->
 	<div id="modalUsuario" class="modal fade" tabindex="-1" role="dialog" ref="formUsuario">
@@ -155,7 +153,16 @@ $select2 = $busca->buscaUsuarioESP($_SESSION['session_pesquisaUsuario']);
 	</div>
 	<!-- Fim do Modal-->
 	<br>
-	<table class="table table-hover">
+	<table id="table_usuario" class="table table-striped table-inverse table-bordered">
+		<colgroup>
+				<col style="width:5%">
+				<col style="width:25%">
+				<col style="width:20%">
+				<col style="width:15%">
+				<col style="width:15%">
+				<col style="width:10%">
+				<col style="width:10%">
+			</colgroup>
 		<thead thead-default>
 			<tr>
 				<th>#</th>

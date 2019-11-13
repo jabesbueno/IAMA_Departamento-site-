@@ -25,7 +25,7 @@ else
 }
 # se erro
 if( $r === false )
-    __output_header__( false, 'Usuário não encontrado.', null);
+    __output_header__( false, "testeqq", null);
 //Aplicação
 $key = 'iama123456';
 //Header - Token

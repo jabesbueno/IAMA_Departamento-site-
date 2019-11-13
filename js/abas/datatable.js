@@ -151,4 +151,45 @@ $(document).ready(function()
 		"order": [[ 0, "asc" ]]
 	});
 	//--------------------------------------------------------------------
+	$('#Bs_Noticia').on('keyup', function() 
+	{
+		table_noticia.search
+		(
+			jQuery.fn.dataTable.ext.type.search.string(NeutralizeAccent(this.value))
+			).draw()
+	});
+
+	// Tabela noticia
+	var table_noticia = $('#table_noticia').DataTable({
+		"columnDefs": [{ "type": 'locale-compare', "targets": [ 0, 1, 2 ] }],
+		"order": [[ 0, "asc" ]]
+	});
+	//--------------------------------------------------------------------
+	$('#Bs_Evento').on('keyup', function() 
+	{
+		table_evento.search
+		(
+			jQuery.fn.dataTable.ext.type.search.string(NeutralizeAccent(this.value))
+			).draw()
+	});
+
+	// Tabela evento
+	var table_evento = $('#table_evento').DataTable({
+		"columnDefs": [{ "type": 'locale-compare', "targets": [ 0, 1, 2 ] }],
+		"order": [[ 0, "asc" ]]
+	});
+	//--------------------------------------------------------------------
+	$('#Bs_Usuario').on('keyup', function() 
+	{
+		table_usuario.search
+		(
+			jQuery.fn.dataTable.ext.type.search.string(NeutralizeAccent(this.value))
+			).draw()
+	});
+
+	// Tabela usuario
+	var table_usuario = $('#table_usuario').DataTable({
+		"columnDefs": [{ "type": 'locale-compare', "targets": [ 0, 1, 2 ] }],
+		"order": [[ 0, "asc" ]]
+	});
 });

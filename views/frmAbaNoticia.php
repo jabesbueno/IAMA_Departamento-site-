@@ -28,16 +28,14 @@
 			<div class="col-md-2">
                     <button type="button" class="btn btn-primary btn_adicionar_noticia" href="#" data-toggle="modal" data-target="#modalNoticia">Adicionar Notícia</button>
              </div>
-			 <form name="formPesquisaNoticia" id="formPesquisaNoticia"method="post" action="../controllers/controllerNoticia.php">
-                <div class="col-sm-8">
-                    <span class="pull-right">
-                    <input type="text" class="form-control frm-pesquisa" id="Ds_PesquisaNoticia" name="Ds_PesquisaNoticia" style="text-transform:uppercase" maxlength="100" value="<?php echo $_SESSION['session_pesquisaNoticia'] ?>" placeholder="Notícia">
-                    </span>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-pesquisar-noticia" name="botao" value="2">Pesquisar</button>
-                </div>
-            </form>
+			 <div class="col-xs-6">
+			</div>
+			<div class="col-xs-4">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" id="icone_busca" aria-hidden="true"></span></span>
+					<input type="text" class="form-control frm-pesquisa " id="Bs_Noticia" name="Bs_Noticia" style="text-transform:uppercase" maxlength="100" placeholder="PESQUISAR" aria-describedby="basic-addon1">
+				</div>
+			</div>
 		</div>
 		<!-- MODAL DE NOTICIA -->
         <div id="modalNoticia" class="modal fade" tabindex="-1" role="dialog" ref="formNoticia">
@@ -128,14 +126,23 @@
 		</div>
 		<!-- Fim do Modal-->
 		<br>
-        <table class="table table-hover">
-            <thead thead-default>
+        <table id="table_noticia" class="table table-striped table-inverse table-bordered">
+            <colgroup>
+				<col style="width:5%">
+				<col style="width:45%">
+				<col style="width:15%">
+				<col style="width:15%">
+				<col style="width:10%">
+				<col style="width:10%">
+			</colgroup>
+			<thead thead-default>
                 <tr>
                     <th>#</th>
 					<th>Notícia</th>
                     <th>Data</th>
                     <th>Hora</th>
-                    <th></th>
+                    <th class="noborder">Opções</th>
+					<th class="noborder"></th>
                 </tr>
             </thead>
             <tbody>

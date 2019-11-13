@@ -161,7 +161,7 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 							<td><?php echo utf8_encode($notificacao["Nm_Bairro"]) ?></td>
 							<td><?php echo $notificacao["Nm_Rua"] ?></td>
 							<td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
-							<td><?php echo utf8_encode($notificacao["Ds_PontoProximo"]) ?></td>
+							<td><?php echo utf8_decode($notificacao["Ds_PontoProximo"]) ?></td>
 							<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
 						</tr>
 						<?php 
@@ -187,3 +187,34 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 					} ?>
 				</tbody>
 			</table>
+			<!-- SCRIPT PARA EXIBIÇÃO DE ERROS DE VALIDAÇÃO/FORMATAÇÃO DE CAMPOS NO MODAL -->
+        <?php 
+            if(isset($_SESSION['session_modalNotificacao']) ? $_SESSION['session_modalNotificacao'] : null) { 
+            ?>
+        <script type="text/javascript">
+            $(document).ready(function(){               
+                if (performance.navigation.type != 1) {
+                <?php if($_SESSION['session_acaoNotificacao'] == 'editar') { ?> 
+                    document.getElementById('editar_noticia_<?php echo $_SESSION['session_ID_Notificacao']?>').click();         
+                <?php } else if($_SESSION['session_acaoNotificacao'] == 'adicionar') { ?>
+                    $(".btn_adicionar_notificacao").click();
+                <?php } ?>
+                }
+                else
+                {
+                <?php
+					$_SESSION['sessionNotificacao_ID_Notificacao'] = null;
+					$_SESSION['sessionNotificacao_Nm_Bairro'] = null;
+					$_SESSION['sessionNotificacao_Nm_Rua'] = null;
+					$_SESSION['sessionNotificacao_Ds_PontoProximo'] = null;
+					$_SESSION['sessionNotificacao_Ft_Notificacao'] = null;
+					$_SESSION['sessionNotificacao_Ds_Notificacao'] = null;
+					$_SESSION['session_acaoNotificacao'] = null;
+                ?>
+                }
+            });
+        </script>
+        <?php } ?>
+        <!-- FIM DO SCRIPT -->
+	</BODY>
+</HTML>
