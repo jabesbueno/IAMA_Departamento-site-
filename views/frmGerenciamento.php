@@ -50,6 +50,7 @@ session_start();
 						<li role="presentation"><a href="#inicio" aria-controls="home" class="btn btn-light" role="tab" data-toggle="tab">Início</a></li>
 						<li role="presentation"><a href="#usuario" class="btn btn-light" role="tab" data-toggle="tab">Usuário</a></li>
 						<li role="presentation"><a href="#notificacao" class="btn btn-light" role="tab" data-toggle="tab">Notificação</a></li>
+						<li role="presentation"><a href="#historico" class="btn btn-light" role="tab" data-toggle="tab">Histórico de notificações</a></li>
 						<li role="presentation"><a href="#eventos" class="btn btn-light" role="tab" data-toggle="tab">Eventos</a></li>
 						<li role="presentation"><a href="#noticias" class="btn btn-light" role="tab" data-toggle="tab">Notícias</a></li>
 					</ul>
@@ -64,6 +65,9 @@ session_start();
 						</div>
 						<div class="tab-pane" id="notificacao" class="tab-pane fade">
 							<?php include_once 'frmAbaNotificacao.php'?>
+						</div>
+						<div class="tab-pane" id="historico" class="tab-pane fade">
+							<?php include_once 'frmAbaHistorico.php'?>
 						</div>
 						<div class="tab-pane" id="eventos" class="tab-pane fade">
 							<?php include_once 'frmAbaEvento.php'?>

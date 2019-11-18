@@ -89,6 +89,22 @@ class DaoUsuario{
 		}catch(Exception $e){
 		  echo "Erro ".$e;
 		}  
+		return $count;
+	}
+	
+	public function validaDepartamento($Nm_Usuario, $Ds_Senha)
+	{
+	      $count=0;
+	    try{
+	      $conec = conec::conecta_mysql();
+          $result = $conec->prepare("SELECT * FROM TB_Usuario WHERE Nm_Usuario = :Nm_Usuario and Ds_Senha = sha1(:Ds_Senha) and Tp_Usuario = 'DEPARTAMENTO' ");
+		  $result->bindValue(":Nm_Usuario",$Nm_Usuario);
+		  $result->bindValue(":Ds_Senha",$Ds_Senha);
+		  $result->execute();
+		  $count =  $result->rowCount();
+		}catch(Exception $e){
+		  echo "Erro ".$e;
+		}  
 		while($select2 = $result->fetch())
 		{
 			$_SESSION['session_ID_Logado'] = $select2["ID_Usuario"];	

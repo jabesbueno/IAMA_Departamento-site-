@@ -114,7 +114,7 @@ switch ($valor)
 				$select = new DaoUsuario();
 				// Chamando função para inserir no banco de dados
 
-				$valida = $select->validaUsuario($Nm_Usuario, $Ds_Senha);
+				$valida = $select->validaDepartamento($Nm_Usuario, $Ds_Senha);
 				
 				
 				$_SESSION['session_validarUsuario'] = null;

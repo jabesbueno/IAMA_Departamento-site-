@@ -113,7 +113,7 @@ $valor = $_POST['botao'];
 			$Ds_Observacao = $_POST['Ds_Observacao'];
 			$historico = new classeHistoricoNotificacao($Dt_Historico, $Ds_Observacao, $ID_Notificacao, $ID_Historico);
 			$responder = new DaoHistoricoNotificacao();
-			$responder->atualizarHistorico($historico);
+			$responder->inserirHistorico($historico);
 			header("Location: ../views/frmGerenciamento.php#notificacao");
 			break;
 		}

@@ -74,7 +74,7 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 						<div class="row">
 							<div class="col-md-12">
 								<label for="Ft_Notificacao">Imagem</label><br>
-								<img src="" alt="#" class="img-rounded img-fluid" id="Foto_Notificacao" name="Foto_Notificacao">
+								<!--<img src="" alt="#" class="img-rounded img-fluid" id="Foto_Notificacao" name="Foto_Notificacao">-->
 								<input type="file" id="Ft_Notificacao" class="form-control" name="Ft_Notificacao"/>
 								<?php echo '<div style="Color:red">' . nl2br($_SESSION['sessionNotificacao_Ft_Notificacao']) . '</div>';?>
 							</div>
@@ -179,7 +179,7 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 								<td><?php echo utf8_encode($notificacao["Nm_Rua"]) ?></td>
 								<td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
 								<td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
-								<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
+								<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Responder</a></td>
 								<!--<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>-->
 							</tr>
 							<?php 

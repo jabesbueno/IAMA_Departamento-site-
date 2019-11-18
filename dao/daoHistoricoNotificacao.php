@@ -49,5 +49,16 @@ class DaoHistoricoNotificacao{
 		}
 		return $arr;
 	}
+	
+	public function buscaGeralHistorico(){
+		try{
+			$conec = conec::conecta_mysql();
+			$select = $conec->prepare("SELECT n.ID_Notificacao, Nm_Bairro, Nm_Rua, Dt_Notificacao, Ds_PontoProximo, Ft_Notificacao, Ds_Notificacao, St_Notificacao, n.ID_Usuario, Nm_Usuario, Nr_Cpf, Dt_Nascimento, Dt_Historico, Ds_Observacao FROM TB_Notificacao AS n INNER JOIN TB_Usuario AS u ON n.ID_Usuario = u.ID_Usuario INNER JOIN TB_Historico AS h ON n.ID_Notificacao = h.ID_Notificacao");
+			$select->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		}
+		return $select;
+	}
 }
 ?>

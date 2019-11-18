@@ -127,7 +127,6 @@ $(document).ready(function()
 		$('#formVisualizaNotificacao input[name="ID_Notificacao"').val(dados.ID_Notificacao);
 		$('#formVisualizaNotificacao input[name="ID_Usuario"]').val(dados.ID_Usuario);
 		$('#formVisualizaNotificacao input[name="ID_Historico"').val(dados.ID_Historico);
-		$('#formVisualizaNotificacao textarea[name="Ds_Observacao"').val(dados.Ds_Observacao).disabled;
         document.getElementById("txtNotificacao").innerHTML = " O cidadão <b>"+ dados.Nm_Usuario +
 		"</b> de CPF <b>" + dados.Nr_Cpf + "</b> apresentou uma notificação no dia <b>" + dados.Dt_Notificacao +
 		"</b> encontrada na rua <b>"+ dados.Nm_Rua +"</b> pertencente ao bairro <b>" + dados.Nm_Bairro +
@@ -136,6 +135,25 @@ $(document).ready(function()
 		document.getElementById("Fot_Notificacao").src = dados.Ft_Notificacao;
 		
 		$('#modalNotificacaoVisaulizacao').modal();
+	});
+	//Visualizando historico
+	$('.btn_visualizar_historico').click(function()
+	{
+        var dados = $.parseJSON($(this).attr('data'));
+		$('#formVisualizaHistorico input[name="ID_Notificacao"').val(dados.ID_Notificacao);
+		$('#formVisualizaHistorico input[name="ID_Usuario"]').val(dados.ID_Usuario);
+		$('#formVisualizaHistorico input[name="ID_Historico"').val(dados.ID_Historico);
+        document.getElementById("txtNotifica").innerHTML = " O cidadão <b>"+ dados.Nm_Usuario +
+		"</b> de CPF <b>" + dados.Nr_Cpf + "</b> apresentou uma notificação no dia <b>" + dados.Dt_Notificacao +
+		"</b> encontrada na rua <b>"+ dados.Nm_Rua +"</b> pertencente ao bairro <b>" + dados.Nm_Bairro +
+		"</b> ponto de referência <b>"+ dados.Ds_PontoProximo + "</b>. <br> Relatando a seguinte descrição: <b>"+
+		dados.Ds_Notificacao + "</b> conforme a imagem apresenta abaixo: ";
+		document.getElementById("Fot_Notifica").src = dados.Ft_Notificacao;
+		document.getElementById("txtHistorico").innerHTML = "No dia <b>"+ dados.Dt_Historico +
+		"</b> o Deparatamento de Meio Ambiente relatou a seguinte observação '<b>"+ dados.Ds_Observacao +
+		"'</b>."
+		
+		$('#modalHistoricoVisaulizacao').modal();
 	});
 	
 	// Barrar acesso a tab caso a mesma esteja disabled

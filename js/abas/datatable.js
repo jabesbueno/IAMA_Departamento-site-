@@ -192,4 +192,18 @@ $(document).ready(function()
 		"columnDefs": [{ "type": 'locale-compare', "targets": [ 0, 1, 2 ] }],
 		"order": [[ 0, "asc" ]]
 	});
+	//--------------------------------------------------------------------
+	$('#Bs_Historico').on('keyup', function() 
+	{
+		table_historico.search
+		(
+			jQuery.fn.dataTable.ext.type.search.string(NeutralizeAccent(this.value))
+			).draw()
+	});
+
+	// Tabela usuario
+	var table_historico = $('#table_historico').DataTable({
+		"columnDefs": [{ "type": 'locale-compare', "targets": [ 0, 1, 2 ] }],
+		"order": [[ 0, "asc" ]]
+	});
 });
