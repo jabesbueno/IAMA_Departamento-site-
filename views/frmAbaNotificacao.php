@@ -1,8 +1,8 @@
 <?php
 ini_set('default_charset','UTF-8'); 
-include_once "../dao/daoNotificacao.php";
-	//require_once "../helpers/checarLogin.php"; 
+include_once "../dao/daoNotificacao.php"; 
 if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#notificacao");
+require_once "../helpers/checarLogin.php";
 
 $busca = new DaoNotificacao();
 $select = $busca->buscaNotificacao();
@@ -159,9 +159,9 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 						?>
 						<tr>
 							<td><?php echo utf8_encode($notificacao["Nm_Bairro"]) ?></td>
-							<td><?php echo $notificacao["Nm_Rua"] ?></td>
+							<td><?php echo utf8_encode($notificacao["Nm_Rua"]) ?></td>
 							<td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
-							<td><?php echo utf8_decode($notificacao["Ds_PontoProximo"]) ?></td>
+							<td><?php echo utf8_encode($notificacao["Ds_PontoProximo"]) ?></td>
 							<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Visualizar</a></td>
 						</tr>
 						<?php 
@@ -178,7 +178,7 @@ if(!isset($_SESSION['sessionNotificacao_Ds_Notificacao'])) $_SESSION['sessionNot
 								<td><?php echo utf8_encode($notificacao["Nm_Bairro"]) ?></td>
 								<td><?php echo utf8_encode($notificacao["Nm_Rua"]) ?></td>
 								<td><?php echo date("d/m/Y", strtotime($notificacao["Dt_Notificacao"])) ?></td>
-								<td><?php echo $notificacao["Ds_PontoProximo"] ?></td>
+								<td><?php echo utf8_encode($notificacao["Ds_PontoProximo"]) ?></td>
 								<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="visualizar_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_notificacao">Responder</a></td>
 								<!--<td><a href="#notificacao" data='<?php echo json_encode(array_map("utf8_encode", $notificacao)) ?>' id="excluir_notificacao_<?php echo $notificacao["ID_Notificacao"]?>" class="btn btn-danger btn_excluir_notificacao">Excluir</a></td>-->
 							</tr>

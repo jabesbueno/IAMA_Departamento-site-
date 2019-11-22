@@ -1,8 +1,8 @@
 <?php
 ini_set('default_charset','UTF-8'); 
-include_once "../dao/daoHistoricoNotificacao.php";
-	//require_once "../helpers/checarLogin.php"; 
+include_once "../dao/daoHistoricoNotificacao.php"; 
 if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#historico");
+require_once "../helpers/checarLogin.php";
 
 $busca = new DaoHistoricoNotificacao();
 $select = $busca->buscaGeralHistorico();
@@ -85,9 +85,9 @@ if(!isset($_SESSION['session_listarNotificacao'])) $_SESSION['session_listarNoti
 						?>
 						<tr>
 							<td><?php echo utf8_encode($historico["Nm_Bairro"]) ?></td>
-							<td><?php echo $historico["Nm_Rua"] ?></td>
+							<td><?php echo utf8_encode($historico["Nm_Rua"]) ?></td>
 							<td><?php echo date("d/m/Y ", strtotime($historico["Dt_Notificacao"])) ?></td>
-							<td><?php echo utf8_decode($historico["Ds_PontoProximo"]) ?></td>
+							<td><?php echo utf8_encode($historico["Ds_PontoProximo"]) ?></td>
 							<td><?php echo date("d/m/Y H:i:s", strtotime($historico["Dt_Historico"])) ?></td>
 							<td><a href="#historico" data='<?php echo json_encode(array_map("utf8_encode", $hitorico)) ?>' id="historico_notificacao_<?php echo $historico["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_historico">Visualizar</a></td>
 						</tr>
@@ -103,9 +103,9 @@ if(!isset($_SESSION['session_listarNotificacao'])) $_SESSION['session_listarNoti
 						{ ?>
 							<tr>
 								<td><?php echo utf8_encode($historico["Nm_Bairro"]) ?></td>
-								<td><?php echo $historico["Nm_Rua"] ?></td>
+								<td><?php echo utf8_encode($historico["Nm_Rua"]) ?></td>
 								<td><?php echo date("d/m/Y", strtotime($historico["Dt_Notificacao"])) ?></td>
-								<td><?php echo utf8_decode($historico["Ds_PontoProximo"]) ?></td>
+								<td><?php echo utf8_encode($historico["Ds_PontoProximo"]) ?></td>
 								<td><?php echo date("d/m/Y H:i:s", strtotime($historico["Dt_Historico"])) ?></td>
 								<td><a href="#historico" data='<?php echo json_encode(array_map("utf8_encode", $historico)) ?>' id="historico_notificacao_<?php echo $historico["ID_Notificacao"]?>" class="btn btn-primary btn_visualizar_historico">Visualizar</a></td>
 							</tr>

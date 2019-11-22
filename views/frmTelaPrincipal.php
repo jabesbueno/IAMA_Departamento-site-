@@ -1,7 +1,7 @@
 <?php
 	ini_set('default_charset','UTF-8'); 
-	//require_once "../helpers/checarLogin.php";
 	session_start();
+	require_once "../helpers/checarLogin.php";
 ?>
 <HTML>
     <HEAD>

@@ -1,9 +1,9 @@
 <?php
+session_start();
 ini_set('default_charset','UTF-8'); 
 include_once "../classes/classeUsuario.php";
 include_once "../dao/daoUsuario.php";  
 include '../libraries/Data_validator.php';
-session_start();
 $valor = $_POST['botao'];
 switch ($valor) 
 {		
@@ -133,7 +133,6 @@ switch ($valor)
 					$_SESSION['session_validarUsuario'] = null;
 					$_SESSION['session_validarSenha'] = null;
 					$_SESSION['session_usuarioLogado'] = $Nm_Usuario;
-					//$_SESSION['session_ultimaAtividade'] = time();
 					header("Location: ../views/frmTelaPrincipal.php");
 				}
 			}

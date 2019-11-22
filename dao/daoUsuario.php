@@ -41,7 +41,8 @@ class DaoUsuario{
 	public function buscaUsuario() {
 	  try{
 			$conec = conec::conecta_mysql();
-			$select = $conec->prepare("SELECT ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario FROM TB_Usuario");
+			$select = $conec->prepare("SELECT ID_Usuario, Nm_Usuario, Ds_Senha, Tp_Usuario, Ft_Usuario, Nr_Cpf, Dt_Nascimento, St_Usuario FROM TB_Usuario WHERE ID_Usuario != :ID_Usuario");
+			$select->bindValue(":ID_Usuario", '1');
 			$select->execute();
 		}catch(Exception $e){
 			print "Erro:..".$e;

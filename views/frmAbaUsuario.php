@@ -1,8 +1,7 @@
 <?php
 include_once "../dao/daoUsuario.php";
-	//require_once "../helpers/checarLogin.php"; 
 if(basename($_SERVER['PHP_SELF']) != 'frmGerenciamento.php') header("Location: frmGerenciamento.php#usuario");
-
+require_once "../helpers/checarLogin.php"; 
 $busca = new DaoUsuario();
 $select = $busca->buscaUsuario();
 

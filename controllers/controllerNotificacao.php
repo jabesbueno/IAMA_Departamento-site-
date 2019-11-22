@@ -48,7 +48,7 @@ $valor = $_POST['botao'];
 					$r = $instancia->inserirNotificacao($notificacao);
 					
 					$Dt_Historico = date('Y-m-d H:i:s');
-					$Ds_Observacao = "";
+					$Ds_Observacao = "Submissão da notificação";
 					$ID_Notificacao = $instancia->retornaUltimoId();
 					$ID_Historico = 1;
 					
