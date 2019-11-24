@@ -50,6 +50,18 @@ class DaoHistoricoNotificacao{
 		return $arr;
 	}
 	
+	public function buscaHistoricoESP($ID_Notificacao){
+		try{
+			$conec = conec::conecta_mysql();
+			$select = $conec->prepare("SELECT ID_Historico, ID_Notificacao, Dt_Historico, Ds_Observacao FROM TB_Historico WHERE ID_Notificacao = :ID_Notificacao");
+			$select->bindValue(":ID_Notificacao", $ID_Notificacao);
+			$select->execute();
+		}catch(Exception $e){
+			print "Erro:..".$e;
+		}
+		return $select;
+	}
+	
 	public function buscaGeralHistorico(){
 		try{
 			$conec = conec::conecta_mysql();

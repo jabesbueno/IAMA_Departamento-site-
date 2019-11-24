@@ -1,7 +1,9 @@
 <?php
 #
+ini_set('default_charset','UTF-8');
+date_default_timezone_set('America/Sao_Paulo');
 require_once 'webservice_init.php';
-include_once "../dao/daoEvento.php";  
+include_once "../dao/daoEvento.php";
 include_once "../dao/daoUsuario.php";  
 #--------------------------------------------------------
 # verificando se estamos recebendo um GET. Não aceitamos POST
@@ -60,17 +62,26 @@ if($r == false)
 else{
 	# realizando consulta SQL
 	$busca = new DaoEvento();
-	$resultado = $busca->buscaEvento();
+	$result = $busca->buscaEvento();
 	
 	$r = array();
-	while($res = $resultado->fetch())
+	$i = 0;
+	while($res = $result->fetch())
 	{
-		$r[] = $res;
-	}
-	
+		$r[$i]['ID_Evento'] = $res['ID_Evento'];
+		$r[$i]['ID_Usuario'] = $res['ID_Usuario'];
+		$r[$i]['Nm_Evento'] = utf8_encode($res['Nm_Evento']);
+		$r[$i]['Dt_Evento'] = $res['Dt_Evento'];
+		$r[$i]['Hr_Evento'] = utf8_encode($res['Hr_Evento']);
+		$r[$i]['Nm_Local'] = utf8_encode($res['Nm_Local']);
+		$r[$i]['Ds_Evento'] = utf8_encode($res['Ds_Evento']);
+		$r[$i]['St_Evento'] = utf8_encode($res['St_Evento']);
+		$i++;
+	}     
+		  
 	# se erro
 	if( $r === false )
-		__output_header__( false, 'Não há eventos!', null);
+		__output_header__( false, 'Não há noticias!', null);
 	
 	# se sucesso
 	__output_header__( true, null, $r);

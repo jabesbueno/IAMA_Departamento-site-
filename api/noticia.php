@@ -63,9 +63,17 @@ else{
 	$result = $busca->buscaNoticia();
 	
 	$r = array();
+	$i = 0;
 	while($res = $result->fetch())
 	{
-		$r[] = $res;
+		
+		$r[$i]['ID_Noticia'] = $res['ID_Noticia'];
+		$r[$i]['ID_Usuario'] = $res['ID_Usuario'];
+		$r[$i]['Nm_Noticia'] = utf8_encode($res['Nm_Noticia']);
+		$r[$i]['Ds_Noticia'] = utf8_encode($res['Ds_Noticia']);
+		$r[$i]['Dt_Noticia'] = $res['Dt_Noticia'];
+		$r[$i]['Hr_Noticia'] = utf8_encode($res['Hr_Noticia']);
+		$i++;
 	}
 	# se erro
 	if( $r === false )
