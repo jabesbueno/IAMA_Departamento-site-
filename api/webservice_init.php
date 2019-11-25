@@ -23,6 +23,9 @@ $_config['show_error_log'] = false;
 function __output_header__( $__success = true, $__message = null, $_dados = array() )
 {
     header('Content-Type: application/json; charset=utf-8');
+	header('Access-Control-Allow-Origin: *');
+	header('Access-Control-Allow-Methods: *');
+	header('Access-Control-Allow-Headers: *');
     echo json_encode(
         array(
             'success' => $__success,

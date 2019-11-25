@@ -11,6 +11,11 @@ if( $_SERVER['REQUEST_METHOD'] !== "POST" )
 # setando o que sera pesquisado no banco de dados
 $Nm_Usuario = $_POST['Nm_Usuario'];
 $Ds_Senha = $_POST['Ds_Senha'];
+
+if($Nm_Usuario == "" || $Ds_Senha == "")
+{
+	__output_header__( false, "Erro na requisição", null);
+}
  
 # realizando consulta SQL
 $select = new DaoUsuario();
@@ -25,7 +30,7 @@ else
 }
 # se erro
 if( $r === false )
-    __output_header__( false, "testeqq", null);
+    __output_header__( false, "Não encontrado", null);
 //Aplicação
 $key = 'iama123456';
 //Header - Token
