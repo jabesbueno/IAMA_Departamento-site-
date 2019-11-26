@@ -31,7 +31,7 @@ include_once "../dao/daoUsuario.php";
 	
 	$extensao = strtolower(substr($_FILES['Ft_Usuario']['name'], -4));
 	$novo_nome = $diretorio.'foto'.$extensao;
-
+	
 	
 	move_uploaded_file($_FILES['Ft_Usuario']['tmp_name'], $novo_nome);
 	
@@ -48,7 +48,7 @@ include_once "../dao/daoUsuario.php";
 	if( $r === false )
     __output_header__( false, 'Erro ao casdatrar usuário', null);
 	
-	__output_header__( ($r > 0), "Usuário adicionado com sucesso", $_dados );
+	__output_header__( ($r > 0), "Usuário adicionado com sucesso", null );
 
 #
 ?>

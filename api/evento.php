@@ -81,7 +81,7 @@ else{
 		  
 	# se erro
 	if( $r === false )
-		__output_header__( false, 'Não há noticias!', null);
+		__output_header__( false, 'Não há eventos!', null);
 	
 	# se sucesso
 	__output_header__( true, null, $r);
