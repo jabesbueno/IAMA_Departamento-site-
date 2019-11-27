@@ -10,8 +10,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    </HEAD>
-    <BODY style="background-color:gray;">
+		<style>
+			img.displayed {
+			display: block;
+			margin-left: auto;
+			margin-right: auto }
+		</style>
+	</HEAD>
+    <BODY>
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -33,5 +39,8 @@
 				</ul>
 			</div>
 		</nav>
+	<div class="container">
+		<img src="../assets/img/cidade_limpa.jpg" class="displayed" width="70%" height="70%" alt="Cidade limpa">
+	</div>
     </BODY>
 </HTML>

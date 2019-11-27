@@ -48,8 +48,7 @@ require_once "../helpers/checarLogin.php";
 				<!-- Nav tabs -->
 				<div class="col-md-12">  
 					<ul class="nav nav-tabs" role="tablist" id="tabs_navegacao_gerenciamento">
-						<li role="presentation"><a href="#inicio" aria-controls="home" class="btn btn-light" role="tab" data-toggle="tab">Início</a></li>
-						<li role="presentation"><a href="#usuario" class="btn btn-light" role="tab" data-toggle="tab">Usuário</a></li>
+						<li role="presentation"><a href="#usuario" aria-controls="home" class="btn btn-light" role="tab" data-toggle="tab">Usuário</a></li>
 						<li role="presentation"><a href="#notificacao" class="btn btn-light" role="tab" data-toggle="tab">Notificação</a></li>
 						<li role="presentation"><a href="#historico" class="btn btn-light" role="tab" data-toggle="tab">Histórico de notificações</a></li>
 						<li role="presentation"><a href="#eventos" class="btn btn-light" role="tab" data-toggle="tab">Eventos</a></li>
@@ -57,11 +56,7 @@ require_once "../helpers/checarLogin.php";
 					</ul>
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div class="tab-pane active" id="inicio" class="tab-pane fade">
-							<h3>Inicio</h3>
-							<p>O processo é lento mas vai valer a pena!</p>
-						</div>
-						<div class="tab-pane" id="usuario" class="tab-pane fade">
+						<div class="tab-pane active" id="usuario" class="tab-pane fade">
 							<?php include_once 'frmAbaUsuario.php'?>
 						</div>
 						<div class="tab-pane" id="notificacao" class="tab-pane fade">

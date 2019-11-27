@@ -7,12 +7,12 @@ include_once "../dao/daoEvento.php";
 include_once "../dao/daoUsuario.php";  
 #--------------------------------------------------------
 # verificando se estamos recebendo um GET. Não aceitamos POST
-	if( $_SERVER['REQUEST_METHOD'] !== "GET" )
+	if( $_SERVER['REQUEST_METHOD'] !== "POST" )
 		__output_header__( false, "Método de requisição não aceito.", null );
 	
 $r = false;
 $contador = 0;
-$token = $_GET['Ds_Autorizacao'];
+$token = $_POST['Ds_Autorizacao'];
 if($token === "")
 {
 	__output_header__( false, 'Não autorizado', null);
